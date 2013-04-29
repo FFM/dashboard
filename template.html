@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- this is built on top of bootstrap: http://twitter.github.io/bootstrap/ -->
+	<!-- Author: L. Aaron Kaplan, Vienna 2013. All rights reserved -->
+	<head>
+		<title>Funkfeuer Dashboard template</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
+		<meta name="description" content="Funkfeuer dashboard">
+		<meta name="author" content="L. Aaron Kaplan <aaron@lo-res.org>">
+		<!-- <link href="assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+		<!-- Bootstrap -->
+		<!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+
+		<!-- Le styles -->
+		<link rel="stylesheet" href="FontAwesome/css/font-awesome.min.css">
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<style type="text/css">
+		  body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		  }
+		</style>
+		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		  <script src="bootstrap/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<!-- Fav and touch icons -->
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72"   href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
+					<link rel="apple-touch-icon-precomposed"     href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
+									   <link rel="shortcut icon" href="bootstrap/ico/favicon.png">
+
+	</head>
+
+
+
+	<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Funkfeuer Dashboard</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+				<!-- <li class="active"><a href="#">Home</a></li> -->
+              <li class="active"><a href="#Overview">&Uuml;bersicht</a></li>
+              <li><a href="#Nodes">Nodes</a></li>
+              <li><a href="#Devices">Devices</a></li>
+            </ul>
+			<!--
+			<p class="navbar-text pull-right"><i class="icon-cog"></i> <a href="#Settings"><i>Username</i></a></p>
+			-->
+            <!-- user -->
+            <div class="btn-group pull-right">
+              <a class="btn btn-primary" href="#"><i class="icon-user"></i> User</a>
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"><i class="icon-envelope icon-white"></i> Messages</a></li>
+                <li><a href="user.html"><i class="icon-pencil icon-white"></i> Edit</a></li>
+                <li><a href="signin.html"><i class="icon-off icon-white"></i> Log-out</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="i"></i> Become admin</a></li>
+              </ul>
+            </div>
+            <!-- end of user -->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+	  <div class="row-fluid">
+		  <div class="span12">
+			  <a id="Overview" ></a>
+			  <h1>Willkommen <i>x</i>!</h1>
+			  <small>Du hast <i>n</i> neue Nachrichten:</small>
+			  <p/>
+			  <div class="alert alert-block alert-error fade in">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h4 class="alert-heading">Warning!</h4>
+					<p>Es gibt derzeit <a href="#XXX">2 Fehler</a> bei deinen Knoten!</p>
+			  </div>
+			  <div class="alert alert-success">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				    Ok, settings &uuml;bernommen Beispiels-text
+			  </div>
+		  </div>
+	  </div>
+
+	  <hr>
+
+	  <div class="row-fluid">
+		  <div class="span7">
+			  <div id="node-overview">
+				  <h2><a id="Nodes">Nodes</a></h2>
+				  <table class="table table-bordered table-hover table-condensed">
+					  <thead>
+						  <tr>
+							  <td>Name</td><td># Devices</td><td>Online?</td><td>Alerts</td><td>Created</td><td>Action</td>
+						  </tr>
+					  </thead>
+					  <tbody>
+						  <tr>
+							<td><a href="https://eddie.funkfeuer.at/api/1/node/1">Krytparoof</a></td>
+							<td>4</td>
+							<td><span class="badge badge-success">4</span></td>
+							<td>0</td>
+							<td>2008/01/01</td>
+							<td><a href="node.html" class="btn btn-small"><i class="icon-pencil icon-white"></i></a>
+								<br><a href="download-json" class="btn btn-mini">{}</a>
+							</td>
+						  </tr>
+						  <tr>
+							<td><a href="https://eddie.funkfeuer.at/api/1/node/2">Nixroof</a></td>
+							<td>6</td>
+							<td><span class="badge badge-warning">4</span></td>
+							<td><span class="badge badge-warning">2</span></td>
+							<td>2009/01/01</td>
+							<td><a href="node.html" class="btn btn-small"><i class="icon-pencil icon-white"></i></a>
+								<br><a href="download-json" class="btn btn-mini">{}</a>
+							</td>
+						  </tr>
+						  <tr>
+							<td><a href="https://eddie.funkfeuer.at/api/1/node/1">Nessusroof</a></td>
+							<td>6</td>
+							<td><span class="badge badge-important">0</span></td>
+							<td><span class="badge badge-warning">6</span></td>
+							<td>2012/09/01</td>
+							<td><a href="node.html" class="btn btn-small"><i class="icon-pencil icon-white"></i></a>
+								<br><a href="download-json" class="btn btn-mini">{}</a>
+							</td>
+						  </tr>
+					  </tbody>
+				  </table>
+
+				  <!-- devices -->
+
+				  <h2><a id="Devices">Devices</a></h2>
+				  <table class="table table-bordered table-hover table-condensed">
+					  <thead>
+						  <tr>
+							  <td>Name</td><td>Nodename</td><td># of Interfaces</td><td>Online?</td><td>Alerts</td><td>Created</td><td>Traffic</td><td>Action</td>
+						  </tr>
+					  </thead>
+					  <tbody>
+						  <tr>
+							<td><a href="https://eddie.funkfeuer.at/api/1/device/1">wo9omni</a></td>
+							<td>wo9</td>
+							<td>2</td>
+							<td><span class="badge badge-success">2</span></td>
+							<td>0</td>
+							<td>2008/01/01</td>
+							<td><img src="https://stats.funkfeuer.at/graphs/freenet/micro-traffic-193.238.156.4.png" /></td>
+							<td>
+								<a class="btn" href="https://eddie.funkfeuer.at/api/1/device/1"><i class="icon-pencil icon-white"></i></a>&nbsp;
+								<br><a href="download-json" class="btn btn-mini">{}</a>
+							</td>
+						  </tr>
+						  <tr>
+							<td><a href="https://eddie.funkfeuer.at/api/1/node/2">rei6wan</a></td>
+							<td>rei6</td>
+							<td>2</td>
+							<td><span class="badge badge-warning">1</span></td>
+							<td><span class="badge badge-warning">1</span></td>
+							<td>2009/01/01</td>
+							<td><img src="https://stats.funkfeuer.at/graphs/housing/micro-traffic-193.238.157.5.png" /></td>
+							<td>
+								<a class="btn" href="https://eddie.funkfeuer.at/api/1/device/1"><i class="icon-pencil icon-white"></i></a>&nbsp;
+								<br><a href="download-json" class="btn btn-mini">{}</a>
+							</td>
+						  </tr>
+						  <tr>
+							<td><a href="https://eddie.funkfeuer.at/api/1/node/1">750upeth4</a></td>
+							<td>rei6</td>
+							<td>2</td>
+							<td><span class="badge badge-success">0</span></td>
+							<td><span class="badge badge-warning">6</span></td>
+							<td>2012/09/01</td>
+							<td><img src="https://stats.funkfeuer.at/graphs/freenet/micro-traffic-193.238.156.9.png" /></td>
+							<td>
+								<a class="btn" href="https://eddie.funkfeuer.at/api/1/device/1"><i class="icon-pencil icon-white"></i></a>&nbsp;
+								<br><a href="download-json" class="btn btn-mini">{}</a>
+							</td>
+						  </tr>
+						  <tr>
+							<td><a href="https://eddie.funkfeuer.at/api/1/node/1">vlan9</a></td>
+							<td>Kryptaroof</td>
+							<td>4</td>
+							<td><span class="badge badge-success">4</span></td>
+							<td>0</td>
+							<td>2008/01/01</td>
+							<td><img src="https://stats.funkfeuer.at/graphs/freenet/micro-traffic-193.238.156.14.png" /></td>
+							<td>
+								<a class="btn" href="https://eddie.funkfeuer.at/api/1/device/1"><i class="icon-pencil icon-white"></i></a>&nbsp;
+								<br><a href="download-json" class="btn btn-mini">{}</a>
+							</td>
+						  </tr>
+					  </tbody>
+				  </table>
+			  </div>
+			  <p/>
+			  <h2><a id="Interfaces">Interfaces</a></h2>
+				...
+		  </div>
+		  <div class="span5">
+			<h2>Graphs / Statistiken</h2>
+			  <!-- ...Graphs, Statistics, Topolgy graphs, ping-plots
+			  <p/>
+			-->
+			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_10800.png" /><p/>
+			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_86400.png" /><p/>
+			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_604800.png" /><p/>
+			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_31536000.png" /><p/>
+		  </div>
+	  </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Funkfeuer.at 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap-transition.js"></script>
+    <script src="bootstrap/js/bootstrap-alert.js"></script>
+    <script src="bootstrap/js/bootstrap-modal.js"></script>
+    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="bootstrap/js/bootstrap-tab.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="bootstrap/js/bootstrap-popover.js"></script>
+    <script src="bootstrap/js/bootstrap-button.js"></script>
+    <script src="bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
+
+	</body>
+</html>

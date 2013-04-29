@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- this is built on top of bootstrap: http://twitter.github.io/bootstrap/ -->
+	<!-- Author: L. Aaron Kaplan, Vienna 2013. All rights reserved -->
+	<head>
+		<title>Funkfeuer Dashboard User settings</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8">
+		<meta name="description" content="Funkfeuer dashboard">
+		<meta name="author" content="L. Aaron Kaplan <aaron@lo-res.org>">
+		<!-- <link href="assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+		<!-- Bootstrap -->
+		<!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+
+		<!-- Le styles -->
+		<link rel="stylesheet" href="FontAwesome/css/font-awesome.min.css">
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<style type="text/css">
+		  body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		  }
+		</style>
+		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		  <script src="bootstrap/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<!-- Fav and touch icons -->
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/ico/apple-touch-icon-144-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72"   href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
+					<link rel="apple-touch-icon-precomposed"     href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
+									   <link rel="shortcut icon" href="bootstrap/ico/favicon.png">
+
+	</head>
+
+
+
+	<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Funkfeuer Dashboard</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+				<!-- <li class="active"><a href="#">Home</a></li> -->
+              <li><a href="#Overview">&Uuml;bersicht</a></li>
+              <li><a href="#Nodes">Nodes</a></li>
+              <li><a href="#Devices">Devices</a></li>
+            </ul>
+			<!--
+			<p class="navbar-text pull-right"><i class="icon-cog"></i> <a href="#Settings"><i>Username</i></a></p>
+			-->
+			<!-- user -->
+			<div class="btn-group pull-right">
+			  <a class="btn btn-primary" href="#"><i class="icon-user"></i> User</a>
+			  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+			  <ul class="dropdown-menu">
+                <li><a href="#"><i class="icon-envelope icon-white"></i> Messages</a></li>
+                <li><a href="user.html"><i class="icon-pencil icon-white"></i> Edit</a></li>
+                <li><a href="signin.html"><i class="icon-off icon-white"></i> Log-out</a></li>
+				<li class="divider"></li>
+				<li><a href="#"><i class="i"></i> Become admin</a></li>
+			  </ul>
+			</div>
+			<!-- end of user -->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+	<!-- alerts -->
+    <div class="container">
+	  <div class="row-fluid">
+		  <div class="span12">
+			  <h1>Willkommen <i>x</i>!</h1>
+			  <small>Du hast <i>n</i> neue Nachrichten: </small>
+			  <p/>
+			  <div class="alert alert-block alert-error fade in">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+					<h4 class="alert-heading">Achtung!</h4>
+					<p>Bei deinen Stammdaten fehlen uns einige Informationen!</p>
+			  </div>
+			  <div class="alert alert-success">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				    Ok, settings &uuml;bernommen Beispiels-text
+			  </div>
+		  </div>
+	  </div>
+
+	  <hr>
+
+	  <div class="row-fluid">
+		  <div class="span6">
+			  <div id="node-overview">
+				<h2>Stammdaten</h2>
+				<small> Letzte &Auml;nderung am: 1/1/1970</small> </p>
+			  </div>
+			  <div id="stammdaten-formular">
+				<form action="https://eddie.funkfeuer.at/api/1/PAP" method="POST" class="form-horizontal">
+					<div class="control-group">
+						<label class="control-label" for="inputEmail">Email</label>
+						<div class="controls span3">
+						  <input type="email" id="inputEmail" placeholder="Email" required>
+						</div>
+					  </div>
+					  <div class="control-group">
+						<label class="control-label" for="fname">Vorname</label>
+						<div class="controls span3">
+						  <input type="text" id="fname" placeholder="Vorname" required>
+						</div>
+					  </div>
+					  <div class="control-group">
+						<label class="control-label" for="lname">Nachname</label>
+						<div class="controls span3">
+						  <input type="text" id="lname" placeholder="Nachname" required>
+						</div>
+					  </div>
+						<!-- Tel -->
+					  <div class="control-group">
+						<label class="control-label" for="tel">Telefon</label>
+						<div class="controls span3">
+						  <input type="text" id="tel" placeholder="Tel">
+						</div>
+					  </div>
+						<!-- Mobile -->
+					  <div class="control-group">
+						<label class="control-label" for="mobile">Mobil</label>
+						<div class="controls span3">
+						  <input type="text" id="mobile" placeholder="Mobil" required>
+						</div>
+					  </div>
+						<!-- Twitter -->
+					  <div class="control-group">
+						<label class="control-label" for="twitter"><i class="icon-twitter"></i></label>
+						<div class="controls input-prepended span3">
+						  <input type="text" id="twitter" placeholder="Twitter" />
+						</div>
+					  </div>
+						<!-- Jabber -->
+					  <div class="control-group">
+						<label class="control-label" for="jabber">Jabber/XMPP</label>
+						<div class="controls input-prepended span3">
+						  <input type="text" id="jabber" placeholder="Jabber/XMPP" />
+						</div>
+					  </div>
+						<!-- address -->
+					  <div class="control-group">
+						<label class="control-label" for="address">Adresse</label>
+						<div class="controls input-prepended span3">
+						  <input type="text" id="address" placeholder="Strasse + Hausnummer" required />
+						</div>
+					  </div>
+						<!-- zip -->
+					  <div class="control-group">
+						<label class="control-label" for="zip">PLZ</label>
+						<div class="controls input-prepended span3">
+						  <input type="text" id="zip" placeholder="PLZ" required />
+						</div>
+					  </div>
+						<!-- city -->
+					  <div class="control-group">
+						<label class="control-label" for="city">Ort</label>
+						<div class="controls input-prepended span3">
+						  <input type="text" id="city" placeholder="Ort" required />
+						</div>
+					  </div>
+						<!-- country -->
+					  <div class="control-group">
+						<label class="control-label" for="country">Land</label>
+						<div class="controls input-prepended span3">
+						  <input type="text" id="country" placeholder="Land" />
+						</div>
+					  </div>
+			  </div>
+			  <p/>
+		  </div>
+		  <div class="span6">
+			<h2>Kommunikations-Pr&auml;ferenzen</h2>
+				<small>Hier kannst du festlegen, wann du &uuml;ber welchen Weg erreicht werden willst</small></p>
+					<label class="control-label">Warnungen: </label>
+					<label class="checkbox inline">
+					  <input type="checkbox" id="AlertMeVia" value="twitter" checked><i class="icon-twitter"></i>
+					</label>
+					<label class="checkbox inline">
+					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="jabber">Jabber/XMPP
+					</label>
+					<label class="checkbox inline">
+					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="email" checked>Email
+					</label>
+					<label class="checkbox inline">
+					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="SMS" checked>SMS
+					</label>
+					</p>
+					<label class="control-label">Normale Messages/&Auml;nderungen: </label>
+					<label class="checkbox inline">
+					  <input type="checkbox" id="AlertMeVia" value="twitter" ><i class="icon-twitter"></i>
+					</label>
+					<label class="checkbox inline">
+					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="jabber">Jabber/XMPP
+					</label>
+					<label class="checkbox inline">
+					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="email" checked>Email
+					</label>
+					<label class="checkbox inline">
+					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="SMS">SMS
+					</label>
+				
+				<hr>
+			<h2>Mentoring</h2>
+			<small>Du bist derzeit Mentor f&uuml;r die folgenden Personen</small>:</p>
+				<select multiple="multiple">
+					<option selected>Akku</option>
+					<option selected>Eddie</option>
+					<option selected>Franz</option>
+					<option>Kunz</option>
+				</select>
+					  <div class="control-group">
+						<div class="controls">
+						  <button type="submit" class="btn">Speichern</button>
+						</div>
+					</div>
+				</form>
+
+		  </div>
+		  <div class="span6">
+			<h2>Statistiken</h2>
+			  ...Graphs, Statistics, wie viele Knoten hat der user? <br>
+			Wie viele sind online? Aktiv seit...?
+		  </div>
+	  </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; Funkfeuer.at 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap-transition.js"></script>
+    <script src="bootstrap/js/bootstrap-alert.js"></script>
+    <script src="bootstrap/js/bootstrap-modal.js"></script>
+    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="bootstrap/js/bootstrap-tab.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="bootstrap/js/bootstrap-popover.js"></script>
+    <script src="bootstrap/js/bootstrap-button.js"></script>
+    <script src="bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
+
+	</body>
+</html>
