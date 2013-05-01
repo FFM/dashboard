@@ -18,22 +18,21 @@ $(document).ready(function() {
         },
     
     attributesChanged: function() {
-        var v=new NodeView({model: this});
-        v.render();
         }
 
     });
 
-  var NodeCollection = Backbone.Collection.extend({
+  var NodeList = Backbone.Collection.extend({
     model: NodeModel,
+    urlRoot: base+"FFM-Node",
+    url: base+"FFM-Node?AQ=owner,EQ,106&verbose",
     initialize: function() {
-      this.on("change",this.modelsChanged);
+      this.on("add",this.listChange);
       },
 
-    modelsChanged: function() {
-      console.log(models.changed);
-      },
-
+    listChange: function() {
+      var v=new OverView({model: this});
+      v.render();}
     });
 
   var StartView = Backbone.View.extend({
@@ -63,9 +62,11 @@ $(document).ready(function() {
 
     render: function() {
       var el=this.$el;
+      var m=this.model;
       $.get(this.template, function(t) {
-        
-        el.html(Mustache.render(t,{}));
+        nodes=m.toJSON();
+        nodes.shift();
+        el.html(Mustache.render(t,{nodes: nodes}));
         });
       }
    });
@@ -88,6 +89,8 @@ $(document).ready(function() {
       }
    });
 
+
+
   var NodeView = Backbone.View.extend({
     template: "/templates/node.html",
    
@@ -100,7 +103,6 @@ $(document).ready(function() {
       var el=this.$el;
       m=this.model;
       $.get(this.template, function(t) {
-        console.log(m.toJSON()); 
         el.html(Mustache.render(t,m.toJSON().attributes));
         });
       }
@@ -122,9 +124,16 @@ $(document).ready(function() {
       },
     
     overview: function() {
-      var v=new OverView;
-      v.render();
+
+      var nl=new NodeList;
+      nl.fetch().success(function(m,o,x) {
+        _.each(m.entries, function(n) {
+          var node=new NodeModel(n);
+          nl.add(node);
+        })
+      })
       },
+        
 
     node: function(id) {
       var m=new NodeModel({pid: id});

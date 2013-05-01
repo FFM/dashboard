@@ -29,36 +29,15 @@
 						  </tr>
 					  </thead>
 					  <tbody>
-						  <tr>
-							<td><a href="https://eddie.funkfeuer.at/api/1/node/1">Krytparoof</a></td>
-							<td>4</td>
-							<td><span class="badge badge-success">4</span></td>
-							<td>0</td>
-							<td>2008/01/01</td>
-							<td><a href="node.html" class="btn btn-small"><i class="icon-pencil icon-white"></i></a>
-								<br><a href="download-json" class="btn btn-mini">{}</a>
-							</td>
-						  </tr>
-						  <tr>
-							<td><a href="https://eddie.funkfeuer.at/api/1/node/2">Nixroof</a></td>
-							<td>6</td>
-							<td><span class="badge badge-warning">4</span></td>
-							<td><span class="badge badge-warning">2</span></td>
-							<td>2009/01/01</td>
-							<td><a href="node.html" class="btn btn-small"><i class="icon-pencil icon-white"></i></a>
-								<br><a href="download-json" class="btn btn-mini">{}</a>
-							</td>
-						  </tr>
-						  <tr>
-							<td><a href="https://eddie.funkfeuer.at/api/1/node/1">Nessusroof</a></td>
-							<td>6</td>
-							<td><span class="badge badge-important">0</span></td>
-							<td><span class="badge badge-warning">6</span></td>
-							<td>2012/09/01</td>
-							<td><a href="node.html" class="btn btn-small"><i class="icon-pencil icon-white"></i></a>
-								<br><a href="download-json" class="btn btn-mini">{}</a>
-							</td>
-						  </tr>
+              {{#nodes}}
+                <tr><td>{{attributes.name}}</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>date</td>
+							  <td><a href="node.html" class="btn btn-small">
+                <i class="icon-pencil icon-white"></i></a></td>
+              {{/nodes}}
 					  </tbody>
 				  </table>
 
