@@ -21,7 +21,7 @@
 		  <div class="span6">
 			  <div id="node-overview">
 				<h2>Stammdaten</h2>
-				<small> Letzte &Auml;nderung am: 1/1/1970</small> </p>
+				<small> Letzte &Auml;nderung am: {{last_changed}}</small> </p>
 			  </div>
 			  <div id="stammdaten-formular">
 				<form action="https://eddie.funkfeuer.at/api/1/PAP" method="POST" class="form-horizontal">
@@ -47,14 +47,14 @@
 					  <div class="control-group">
 						<label class="control-label" for="tel">Telefon</label>
 						<div class="controls span3">
-						  <input type="text" id="tel" placeholder="Tel">
+						  <input type="tel" id="tel" placeholder="Tel">
 						</div>
 					  </div>
 						<!-- Mobile -->
 					  <div class="control-group">
 						<label class="control-label" for="mobile">Mobil</label>
 						<div class="controls span3">
-						  <input type="text" id="mobile" placeholder="Mobil" required>
+						  <input type="tel" id="mobile" placeholder="Mobil" required>
 						</div>
 					  </div>
 						<!-- Twitter -->
