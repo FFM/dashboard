@@ -3,6 +3,13 @@ dashboard
 
 Dashboard for the nodeDB
 
+Concepts
+========
+
+The Dashboard is a single-page app built on Backbone and Mustache as
+templating - it uses the nodeDB RestAPI to make essential configurations
+possible.
+
 
 Requirements
 ============
