@@ -114,11 +114,29 @@ $(document).ready(function() {
       }
    });
 
+  var InterfaceView = Backbone.View.extend({
+    template: "/templates/interface.html",
+   
+    el: $("#app"),
+
+    initialize: function() {
+      },
+
+    render: function() {
+      var el=this.$el;
+      $.get(this.template, function(t) {
+        
+        el.html(Mustache.render(t,{}));
+        });
+      }
+   });
+
   var AppRouter=Backbone.Router.extend({
     routes: {
-      "user":   "user", 
-      "node":   "node",
-      "device": "device",
+      "user":       "user", 
+      "node":       "node",
+      "device":     "device",
+      "interface":  "interface",
       "*var":   "start"
       },
 
@@ -135,6 +153,11 @@ $(document).ready(function() {
 
     device: function() {
       var v=new DeviceView;
+      v.render();
+      },
+
+    interface: function() {
+      var v=new InterfaceView;
       v.render();
       },
 

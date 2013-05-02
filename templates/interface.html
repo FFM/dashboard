@@ -1,0 +1,195 @@
+	  <div class="row-fluid">
+		  <div id="interface-overview" class="span12">
+			<h2>Interface</h2>
+			<small class="pull-right"> Interface erzeugt am: {{created}}</small> <br/>
+			<small class="pull-right"> Letzte &Auml;nderung am: 1/1/1970</small> <br/>
+			Ein "Interface" ist ein WLAN oder Ethernet Interface, es geh&ouml;rt immer zu einem Device und hat eine IP Adresse.<p/>
+			<div class="alert alert-block fade in">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>Hinweis!</strong> Bei deinem Interface fehlen uns noch ein paar Informationen! Bitte diese erg&auml;nzen.
+			</div>
+		  </div>
+	  </div>
+
+	  <div class="row-fluid">
+		  <div class="span6">
+			  <div id="interface-data">
+				  <h3>Interface Daten</h3>
+				<form action="https://eddie.funkfeuer.at/api/1/device/ID" method="POST" class="form-horizontal">
+				 	  <div class="control-group">
+						<label class="control-label" for="name">Name</label>
+						<div class="controls span3">
+							<input type="text" id="nodename" placeholder="eth0" required>
+						</div>
+					  </div>
+					  <!-- IP address  & netmask -->
+				 	  <div class="control-group">
+						<label class="control-label" for="ip">IP Adresse</label>
+						<div class="controls span3 input-append">
+							<input type="text" id="ip" placeholder="193.238.156.1" required>
+							<span class="add-on">/32</span><br/>
+							<label class="control-label" >Netmask: 255.255.255.255</label><br/>
+						</div>
+					  </div>
+					  <div class="control-group">
+						<!-- XXX FIXME we will want to have the IP address and Mac address fields in one group, and one "+" sign below -->
+					  <!-- Mac Address -->
+						<label class="control-label" for="mac">Mac Adresse</label>
+						<div class="controls span3">
+							<input type="text" id="mac" placeholder="01:ca:ff:ee:ba:be" required>
+						</div>
+						<!-- XXX FIXME the alignment is broken -->
+							<button class="btn btn-mini btn-info span1 pull-right">+</button>
+					  </div>
+						<!-- Device: here we list all the devices of the node. -->
+					  <div class="control-group">
+						  <label class="control-label" for="device">Device Name</label>
+						  <div class="controls span3">
+						    <select id="node">
+								<option selected>DeviceName1</option>
+							</select>
+					  	  </div>
+					  </div>
+					  <div class="control-group">
+						  <label class="control-label" for="interfaceType">Typ</label>
+						  <div class="controls span3">
+							  <select id="interfaceType">
+								  <option selected>Wireless</option>
+								  <option>Ethernet</option>
+								  <option>Andere</option>
+								</select>
+							</div>
+						</div>
+
+					  <hr>
+
+					  <!-- WLAN card stuff -->
+					  <h3>WLAN Karte</h3>
+					  <!-- status: active/inactive -->
+					  <!-- XXX FIXME: fix formating -->
+				 	  <div class="control-group">
+						  <div class="control-group">
+							<label class="radio span6" for="is_active">Aktiv?</label>
+							<div class="controls span6">
+								<input type="radio" name="is_active" id="on" checked>&nbsp;Aktiv&nbsp;
+								<input type="radio" name="is_active" id="off">&nbsp;Inaktiv&nbsp;
+							</div>
+							</label>
+						  </div>
+					  </div>
+					  <!-- bssid -->
+				 	  <div class="control-group">
+						<label class="control-label" for="bssid">BSSID</label>
+						<div class="controls span3">
+							<input type="text" id="bssid" placeholder="26:A4:05:7B:2B:D8" required>
+						</div>
+					  </div>
+					  <!-- essid -->
+				 	  <div class="control-group">
+						<label class="control-label" for="essid">ESSID</label>
+						<div class="controls span3">
+							<input type="text" id="essid" placeholder="v11.freiesnetz.www.funkfeuer.at" required>
+						</div>
+					  </div>
+					  <!-- XXX FIXME here we need to add the wireless / wired parameters: the view depends on the interfaceType -->
+					  <div class="control-group">
+						 <label class="control-label" for="wifiMode">WLAN Mode</label>
+						 <div class="controls span3">
+							<select id="wifiMode">
+								<option selected>Ad-hoc</option>
+								<option>AP</option>
+								<option>Client</option>
+							</select>
+						</div>
+					  </div>
+					  <!-- wlan standard -->
+					  <div class="control-group">
+						 <label class="control-label" for="wifiStandard">WLAN Standard</label>
+						 <div class="controls span3">
+							<select id="wifiStandard">
+								<option selected>802.11 b/g</option>
+								<option>802.11a</option>
+								<option>802.11ac</option>
+							</select>
+						</div>
+					  </div>
+					  <!-- Kanal -->
+				 	  <div class="control-group">
+						<label class="control-label" for="freq">Kanal</label>
+						<div class="controls span3">
+							<input type="text" id="freq" placeholder="11" required>
+						</div>
+					  </div>
+					  <!-- Txpower -->
+				 	  <div class="control-group">
+						<label class="control-label" for="txpower">Sendeleistung (dBm)</label>
+						<div class="controls span3 input-append">
+							<input type="text" id="txpower" placeholder="20" required>
+						</div>
+					  </div>
+					  <!-- Loss -->
+				 	  <div class="control-group">
+						<label class="control-label" for="loss">Summierte Verluste (Kabeld&auml;mpfung, Stecker etc. (dBi))</label>
+						<div class="controls span3 input-append">
+							<input type="text" id="loss" placeholder="4" required>
+						</div>
+					  </div>
+
+						<hr>
+
+					  <!-- Antenna stuff -->
+					  <h3>Antenne</h3>
+					  <!-- Polarisation -->
+					  <!-- XXX FIXME: the antenna is a 1-1 to a wi-fi card. Hence, we can make a box and put all the antenna stuff here . Make a box (differnet color) -->
+				 	  <div class="control-group">
+						<label class="control-label" for="polarisation">Polarisation der Antenne</label>
+						<div class="controls span3">
+							<select id="polarisation" required>
+								<option selected>vertikal</option>
+								<option>horizontal</option>
+								<option>zirkular</option>
+							</select>
+						</div>
+					  </div>
+				 	  <div class="control-group">
+						<label class="control-label" for="antennaType">Antennentyp</label>
+						<div class="controls span3">
+							<select id="antennaType" required>
+								<option selected>Eingebaut</option>
+								<option>Stelladoradus 20dBi bla</option>
+								<option>RocketDish 30dBi bla</option>
+							</select>
+						</div>
+					  </div>
+					  <!-- Antenna gain -->
+				 	  <div class="control-group">
+						<label class="control-label" for="antennaGain">Antennengewinn</label>
+						<div class="controls span3 input-append">
+							<input type="text" id="antennaGain" placeholder="14" required> 
+							<span class="add-on">dBi</span><br/>
+						</div>
+					  </div>
+					  <!-- end of antenna stuff -->
+					  <div class="control-group">
+						<div class="controls">
+						  <button type="submit" class="btn">Speichern</button>
+						</div>
+					</div>
+				</form>
+
+			  </div>
+			  <p/>
+		  </div>
+		  <!-- XXX FIXME: make this collapsible  and collapsed by default -->
+		  <div class="span6">
+			<h2>Interface Statistiken</h2>
+				<small>Statistiken zum Interface: Smokeping, IPv6 support, SNR, biterror rate, wlan parameter,...</small></p>
+				<img src="XXX" class="img-rounded" width=400 height=400 />
+		  </div>
+		  <div class="span6">
+			  <h2>Power limits</h2>
+			  <small>Vorausberechnung der Sendeleistungs-Limits</small><p/>
+			  <img src="calculated limit graphics.png" class="img-rounded" width=400 height=400 />
+		  <hr>
+	  </div>
+
