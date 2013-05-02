@@ -10,6 +10,8 @@ The Dashboard is a single-page app built on Backbone and Mustache as
 templating - it uses the nodeDB RestAPI to make essential configurations
 possible.
 
+For AJAX basic auth, copy js/settings.js.tmpl to js/settings.js and edit
+accordingly
 
 Requirements
 ============

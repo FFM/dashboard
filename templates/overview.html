@@ -30,12 +30,12 @@
 					  </thead>
 					  <tbody>
               {{#nodes}}
-                <tr><td>{{attributes.name}}</td>
+                <tr><td id="devices-{{pid}}">{{attributes.name}}</td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
                 <td>date</td>
-							  <td><a href="node.html" class="btn btn-small">
+							  <td><a id="edit-{{pid}}" href="#" class="btn btn-small">
                 <i class="icon-pencil icon-white"></i></a></td>
               {{/nodes}}
 					  </tbody>

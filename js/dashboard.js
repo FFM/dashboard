@@ -2,14 +2,6 @@ $(document).ready(function() {
 
   var base="https://nodedb2.confine.funkfeuer.at/api/";
   
-  $.ajaxSetup({beforeSend: function(xhr) {
-    xhr.setRequestHeader("Authorization",
-      "Basic ") },
-    xhrFields: {
-      withCredentials: true}
-      
-      });
-
   var NodeModel = Backbone.Model.extend({
     urlRoot: base+"FFM-Node/",
     idAttribute: "pid",
@@ -32,7 +24,8 @@ $(document).ready(function() {
 
     listChange: function() {
       var v=new OverView({model: this});
-      v.render();}
+      v.render();
+      }
     });
 
   var StartView = Backbone.View.extend({
@@ -67,6 +60,9 @@ $(document).ready(function() {
         nodes=m.toJSON();
         nodes.shift();
         el.html(Mustache.render(t,{nodes: nodes}));
+        _.each(m.models,function(d) {
+          console.log(d.toJSON());
+          });
         });
       }
    });
@@ -101,9 +97,8 @@ $(document).ready(function() {
 
     render: function() {
       var el=this.$el;
-      m=this.model;
       $.get(this.template, function(t) {
-        el.html(Mustache.render(t,m.toJSON().attributes));
+        el.html(Mustache.render(t,{}));
         });
       }
    });
@@ -113,7 +108,7 @@ $(document).ready(function() {
     routes: {
       "user": "user", 
       "overview": "overview", 
-      "node/:id": "node",
+      "node": "node",
       "*var": "start"
       },
 
@@ -135,9 +130,9 @@ $(document).ready(function() {
       },
         
 
-    node: function(id) {
-      var m=new NodeModel({pid: id});
-      m.fetch();
+    node: function() {
+      var v=new NodeView();
+      v.render();
       },
 
     start: function() {
