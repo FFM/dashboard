@@ -3,7 +3,7 @@
 			<h2>Interface</h2>
 			<small class="pull-right"> Interface erzeugt am: {{created}}</small> <br/>
 			<small class="pull-right"> Letzte &Auml;nderung am: 1/1/1970</small> <br/>
-			Ein "Interface" ist ein WLAN oder Ethernet Interface, es geh&ouml;rt immer zu einem Device und hat eine IP Adresse.<p/>
+			Ein "Interface" ist eine WLAN oder Ethernet Netzwerkkarte, sie geh&ouml;rt immer zu einem <a href="#device">Device</a> und hat eine IP Adresse.<p/>
 			<div class="alert alert-block fade in">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				<strong>Hinweis!</strong> Bei deinem Interface fehlen uns noch ein paar Informationen! Bitte diese erg&auml;nzen.
@@ -22,15 +22,6 @@
 							<input type="text" id="nodename" placeholder="eth0" required>
 						</div>
 					  </div>
-					  <!-- IP address  & netmask -->
-				 	  <div class="control-group">
-						<label class="control-label" for="ip">IP Adresse</label>
-						<div class="controls span3 input-append">
-							<input type="text" id="ip" placeholder="193.238.156.1" required>
-							<span class="add-on">/32</span><br/>
-							<label class="control-label" >Netmask: 255.255.255.255</label><br/>
-						</div>
-					  </div>
 					  <div class="control-group">
 						<!-- XXX FIXME we will want to have the IP address and Mac address fields in one group, and one "+" sign below -->
 					  <!-- Mac Address -->
@@ -38,8 +29,6 @@
 						<div class="controls span3">
 							<input type="text" id="mac" placeholder="01:ca:ff:ee:ba:be" required>
 						</div>
-						<!-- XXX FIXME the alignment is broken -->
-							<button class="btn btn-mini btn-info span1 pull-right">+</button>
 					  </div>
 						<!-- Device: here we list all the devices of the node. -->
 					  <div class="control-group">
@@ -49,6 +38,7 @@
 								<option selected>DeviceName1</option>
 							</select>
 					  	  </div>
+						  <button class="btn btn-info pull-right">&Auml;ndern</button>
 					  </div>
 					  <div class="control-group">
 						  <label class="control-label" for="interfaceType">Typ</label>
@@ -60,6 +50,33 @@
 								</select>
 							</div>
 						</div>
+
+					  <hr>
+
+					  <!-- IP address  & netmask -->
+				 	  <div class="control-group">
+						<label class="control-label" for="ip_1">IP Adresse</label>
+						<div class="controls span3 input-append">
+							<input type="text" id="ip_1" placeholder="193.238.156.1" required>
+							<span class="add-on">/32</span><br/>
+							<!-- <label class="control-label" >Netmask: 255.255.255.255</label><br/> -->
+						</div>
+					  </div>
+				 	  <div class="control-group">
+						<label class="control-label" for="ip_2">Zus&auml;tzliche IP Adresse</label>
+						<div class="controls span3 input-append">
+							<input type="text" id="ip_2" placeholder="193.238.156.2" required>
+							<span class="add-on">/32</span><br/>
+						</div>
+					  </div>
+				 	  <div class="control-group">
+						<label class="control-label" for="ip_2">Zus&auml;tzliche IP Adresse</label>
+						<div class="controls span3 input-append">
+							<input type="text" id="ip_2" placeholder="193.238.156.3" required>
+							<span class="add-on">/32</span><br/>
+						</div>
+							<button class="btn btn-info pull-right">+</button>
+					  </div>
 
 					  <hr>
 
