@@ -35,7 +35,17 @@
 		<link rel="apple-touch-icon-precomposed" sizes="72x72"   href="/vendor/bootstrap/ico/apple-touch-icon-72-precomposed.png">
 					<link rel="apple-touch-icon-precomposed"     href="/vendor/bootstrap/ico/apple-touch-icon-57-precomposed.png">
 									   <link rel="shortcut icon" href="/vendor/bootstrap/ico/favicon.png">
-
+		<!-- google maps stuff -->
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyB6a2hrDnhUO8mCaahQkolf2aGlA9fKO3I&sensor=false"></script>
+		<style>
+		    #map-canvas {
+			margin: 0;
+			width: 570;
+			height: 150px;
+			padding: 0;
+			height: 100%;
+		  }
+		</style>
 	</head>
 
 
@@ -53,7 +63,7 @@
           <a class="brand" href="#">Funkfeuer Dashboard</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="/">Home</a></li>
               <li><a href="#about">&Uuml;ber</a></li>
               <li><a href="#contact">Kontakt</a></li>
             </ul>
@@ -87,7 +97,7 @@
 		</div>
 			-->
 		<div class="span10">
-		<h2><a id="about">&Uuml;ber</a></h2>
+		<h2 id="about">&Uuml;ber</h2>
 		Die neue node Datenbank ("common Node DB") ist ein Projekt bei Funkfeuer, um die alte bestehende Verwaltungs-Datenbank zu ersetzen und zu erweitern.
 		W&auml;hrend die alte Datenbank uns viele Jahre erfolgreich gedient hat und die IP Adressenverwaltung bei Funkfeuer Wien &uuml;berhaupt erm&ouml;glicht hat,
 		gab es - wie so oft - im Laufe der Zeit immer mehr W&uuml;nsche bez&uuml;glich neuer Funktionalit&auml;t.
@@ -124,7 +134,7 @@
 
       <div class="row-fluid" >
 		<div class="span8">
-		<h2><a id="contact">Kontakt</a></h2>
+		<h2 id="contact">Kontakt</h2>
 <address>
 	Verein FunkFeuer Wien<br>
 	ZVR: 814804682<br>

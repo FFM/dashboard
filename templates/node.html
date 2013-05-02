@@ -1,12 +1,13 @@
 	  <div class="row-fluid">
 		  <div id="node-overview" class="span12">
 			<h2>&Uuml;bersicht</h2>
-			<small class="pull-right"> Letzte &Auml;nderung am: 1/1/1970</small> </p>
-			Ein "Node" ist ein Standort. Er hat einen Namen, eine Position (Dach) und Leute, die ihn betreuen.</p>
-			  <div class="alert alert-block fade in">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-				  <strong>Hinweis!</strong> Bei deinem Knoten fehlen uns einige Panorama-Bilder!</p>
-			  </div>
+			<small class="pull-right"> Knote erzeugt am: {{created}}</small> <br/>
+			<small class="pull-right"> Letzte &Auml;nderung am: 1/1/1970</small> <br/>
+			Ein "Node" ist ein Standort. Er hat einen Namen, eine Position (Dach) und Leute, die ihn betreuen.<p/>
+			<div class="alert alert-block fade in">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>Hinweis!</strong> Bei deinem Knoten fehlen uns einige Panorama-Bilder!
+			</div>
 		  </div>
 	  </div>
 
@@ -102,7 +103,7 @@
 		  <!-- XXX FIXME: make this collapsible  and collapsed by default -->
 		  <div class="span6">
 			<h3>Node Karte</h3>
-				<div id="map-canvas"></div>
+			<div class="span12" id="map-canvas" style="width: 570px; height: 350px;"></div>
 		  </div>
 		  <hr>
 		  <div class="span6">
