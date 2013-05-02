@@ -85,8 +85,6 @@ $(document).ready(function() {
       }
    });
 
-
-
   var NodeView = Backbone.View.extend({
     template: "/templates/node.html",
    
@@ -103,26 +101,92 @@ $(document).ready(function() {
 		// google maps
 		var map;
 		var mapOptions = {
-		  zoom: 8,
-		  center: new google.maps.LatLng(-34.397, 150.644),
+		  zoom: 13,
+		  center: new google.maps.LatLng(48.184864, 16.312241),
 		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		  //mapTypeId: google.maps.MapTypeId.TERRAIN
 		};
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		//console.log(map);
 
+		var latlon = new google.maps.LatLng(48.184864, 16.312241);
+		//var marker = new google.maps.Marker({
+		//	      position: latlon,
+		//	      map: map,
+		//	      title:"nodeName!"
+		//	  });
 		// google.maps.event.addDomListener(window, 'load', initialize);
+		var contentString = '<div id="content">'+
+		  '<div id="siteNotice">'+
+		  '</div>'+
+		  '<h3 id="firstHeading" class="firstHeading">nodeName</h3>'+
+		  '<div id="bodyContent">'+
+		  '<p><b>nodeName</b>, also referred to as blaFasel has been online since: &lt;date&gt;<p/>' +
+		  'It has x devices. Link qualities: .... <p/>'+
+		  '<p><a href="http://en.wikipedia.org/wiki/Wanker">source</a><p/>'+
+		  '</div>'+
+		  '</div>';
 
+		var infowindow = new google.maps.InfoWindow({
+			content: contentString
+		});
+
+		var marker = new google.maps.Marker({
+			position: latlon,
+			map: map,
+			title: 'nodeName!'
+		});
+
+		google.maps.event.addListener(marker, 'click', function() {
+			infowindow.open(map,marker);
+		});
+
+      });
+    }	// end of render: function()
+   });
+
+  var DeviceView = Backbone.View.extend({
+    template: "/templates/device.html",
+   
+    el: $("#app"),
+
+    initialize: function() {
+      },
+
+    render: function() {
+      var el=this.$el;
+      $.get(this.template, function(t) {
+        
+        el.html(Mustache.render(t,{}));
         });
       }
    });
 
+  var InterfaceView = Backbone.View.extend({
+    template: "/templates/interface.html",
+   
+    el: $("#app"),
+
+    initialize: function() {
+      },
+
+    render: function() {
+      var el=this.$el;
+      $.get(this.template, function(t) {
+        
+        el.html(Mustache.render(t,{}));
+        });
+      }
+   });
 
   var AppRouter=Backbone.Router.extend({
     routes: {
-      "user": "user", 
+      "user":       "user", 
+      "node":       "node",
       "overview": "overview", 
-      "node": "node",
-      "*var": "start"
+      "device":     "device",
+      "interface":  "interface",
+      "*var":   "start"
       },
 
   
@@ -145,6 +209,16 @@ $(document).ready(function() {
 
     node: function() {
       var v=new NodeView();
+      v.render();
+      },
+
+    device: function() {
+      var v=new DeviceView;
+      v.render();
+      },
+
+    interface: function() {
+      var v=new InterfaceView;
       v.render();
       },
 
