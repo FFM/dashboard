@@ -35,6 +35,7 @@ $(document).ready(function() {
       }
    });
 
+
   var NodeView = Backbone.View.extend({
     template: "/templates/node.html",
    
@@ -96,12 +97,29 @@ $(document).ready(function() {
     }	// end of render: function()
    });
 
+  var DeviceView = Backbone.View.extend({
+    template: "/templates/device.html",
+   
+    el: $("#app"),
+
+    initialize: function() {
+      },
+
+    render: function() {
+      var el=this.$el;
+      $.get(this.template, function(t) {
+        
+        el.html(Mustache.render(t,{}));
+        });
+      }
+   });
 
   var AppRouter=Backbone.Router.extend({
     routes: {
-      "user": "user", 
-      "node": "node",
-      "*var": "start"
+      "user":   "user", 
+      "node":   "node",
+      "device": "device",
+      "*var":   "start"
       },
 
   
@@ -112,6 +130,11 @@ $(document).ready(function() {
     
     node: function() {
       var v=new NodeView;
+      v.render();
+      },
+
+    device: function() {
+      var v=new DeviceView;
       v.render();
       },
 
