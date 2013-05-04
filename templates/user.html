@@ -1,6 +1,8 @@
 	  <div class="row-fluid">
 		  <div class="span12">
 			  <h1>Willkommen <i>x</i>!</h1>
+			  <small class="pull-right"> User erzeugt am: {{created}}</small> <br/>
+			  <small class="pull-right"> Letzte &Auml;nderung am: 1/1/1970</small> <br/>
 			  <small>Du hast <i>n</i> neue Nachrichten: </small>
 			  <p/>
 			  <div class="alert alert-block alert-error fade in">
@@ -21,15 +23,19 @@
 		  <div class="span6">
 			  <div id="node-overview">
 				<h2>Stammdaten</h2>
-				<small> Letzte &Auml;nderung am: {{last_changed}}</small> </p>
 			  </div>
 			  <div id="stammdaten-formular">
 				<form action="https://eddie.funkfeuer.at/api/1/PAP" method="POST" class="form-horizontal">
+				  <fieldset class="control-group">
+				<!-- Email -->
 					<div class="control-group">
 						<label class="control-label" for="inputEmail">Email</label>
-						<div class="controls span3">
+						<div class="controls span6">
 						  <input type="email" id="inputEmail" placeholder="Email" required>
 						</div>
+							<a href="http://gravatar.com/">
+							<img id="avatar" class="avatar span1" src="http://www.gravatar.com/avatar/4532bfe85bf353d4ef118650383c4b24.png?s=64"><!-- XXX FIXME: generate the gravatar URL dynamically -->
+							</a>
 					  </div>
 					  <div class="control-group">
 						<label class="control-label" for="fname">Vorname</label>
@@ -99,6 +105,7 @@
 						  <input type="text" id="country" placeholder="Land" />
 						</div>
 					  </div>
+				  </fieldset>
 			  </div>
 			  <p/>
 		  </div>
