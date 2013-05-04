@@ -48,19 +48,66 @@ $(document).ready(function() {
   var NodeEdit = Backbone.View.extend({
     template: "/templates/node-edit.html",
    
-    el: $("#node"),
-
     initialize: function() {
       },
 
     render: function() {
       var el=$("#node");
       var model=this.model;
-      console.log("render");
-      console.log(model);
-      console.log(el);
       $.get(this.template, function(t) {
         el.html(Mustache.render(t,model.toJSON().attributes));
+        });
+      }
+   });
+
+  var NodeStats = Backbone.View.extend({
+    template: "/templates/node-statistics.html",
+   
+    initialize: function() {
+      },
+
+    render: function() {
+      var el=$("#statistics");
+      var model=this.model;
+      $.get(this.template, function(t) {
+        el.html(Mustache.render(t,model.toJSON().attributes));
+		    var map;
+        var lat=model.get("attributes").position.lat;
+        var lon=model.get("attributes").position.lon;
+		    var mapOptions = {
+		      zoom: 13,
+		      center: new google.maps.LatLng(lat, lon),
+		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+		    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+		    var latlon = new google.maps.LatLng(lat, lon);
+		    var contentString = '<div id="content">'+
+		      '<div id="siteNotice">'+
+		      '</div>'+
+		      '<h3 id="firstHeading" class="firstHeading">{{name}}</h3>'+
+		      '<div id="bodyContent">'+
+		      '<p><b>{{name}}</b><p/>' +
+		      'It has x devices. Link qualities: .... <p/>'+
+		      '<p><a href="http://en.wikipedia.org/wiki/Wanker">source</a><p/>'+
+		      '</div>'+
+		      '</div>';
+
+		  var infowindow = new google.maps.InfoWindow({
+			  content: Mustache.render(contentString,model.toJSON().attributes)
+		  });
+
+		  var marker = new google.maps.Marker({
+			  position: latlon,
+			  map: map,
+			  title: model.get("attributes").name
+		    });
+
+		  google.maps.event.addListener(marker, 'click', function() {
+			  infowindow.open(map,marker);
+		  });
+
+
         });
       }
    });
@@ -85,8 +132,10 @@ $(document).ready(function() {
           r=$("#"+d.get("pid"));
           $(".edit",r).on("click", function() {
             console.log("edit"+d.get("pid"));
-            v=new NodeEdit({model: d});
+            var v=new NodeEdit({model: d});
             v.render();
+            var s=new NodeStats({model: d});
+            s.render();
             });
           $(".name",r).on("click", function() {
             console.log("devices"+d.get("pid"));
