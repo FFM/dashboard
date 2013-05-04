@@ -1,7 +1,10 @@
 var user;
 
 $(document).ready(function() {
-
+  
+  function loading(el) {
+    el.html("<i class='icon-spinner icon-2x'></i> Loading ...");
+    }
   var base="https://nodedb2.confine.funkfeuer.at/api/";
  
   var UserModel = Backbone.Model.extend({
@@ -85,6 +88,16 @@ $(document).ready(function() {
 
     });
 
+  var DeviceType = Backbone.Model.extend({
+    urlRoot: base+"FFM-Net_Device_Type/",
+    idAttribute: "pid"
+    });
+
+  var DeviceTypeList = Backbone.Collection.extend({
+    url: base+ "/FFM-Net_Device_Type?verbose&closure",
+    model: DeviceType
+    });
+
   var NodeList = Backbone.Collection.extend({
     model: NodeModel,
     urlRoot: base+"FFM-Node",
@@ -97,6 +110,7 @@ $(document).ready(function() {
       v.render();
       }
     });
+
   var DeviceList = Backbone.Collection.extend({
     model: DeviceModel,
     urlRoot: base+"FFM-Device",
@@ -137,6 +151,8 @@ $(document).ready(function() {
 
     render: function() {
       el= $("#login");
+      loading(el);
+
       if (this.model.get("rat")!=undefined) {
         el.html(this.logout);
         $("div.btn",this.$el).on("click",this.model.logout);
@@ -158,6 +174,8 @@ $(document).ready(function() {
 
     render: function() {
       var el=this.$el;
+      loading(el);
+
       $.get(this.template, function(t) {
         
         el.html(Mustache.render(t,{}));
@@ -175,15 +193,53 @@ $(document).ready(function() {
 
     render: function() {
       var el=$("#node");
+      loading(el);
       var m=this.model;
       $.get(this.template, function(t) {
         var devices=m.toJSON();
         devices.shift();
         el.html(Mustache.render(t,{devices: devices}));
+        _.each(m.models, function(d) {
+          r=$("#"+d.get("pid"));
+          $(".edit",r).on("click", function() {
+            $("#devicelist tr").removeClass("success");
+            $("#"+d.get("pid")).addClass("success");
+            var v=new DeviceEdit({model: d});
+            v.render();
+            });
+          $(".name",r).on("click", function() {
+            $("#devicelist tr").removeClass("success");
+            $("#"+d.get("pid")).addClass("success");
+            });
+          });
         });
       }
    });
-   
+  
+  var DeviceEdit = Backbone.View.extend({
+
+    template: "/templates/device-edit.html",
+
+    initialize: function() {},
+
+    render: function() {
+      var el=$("#device");
+      loading(el);
+      var model=this.model;
+
+      var template=$.get(this.template).pipe(function(resp) { return resp;
+      });
+
+      var dt=new DeviceTypeList;
+      
+      $.when(template,dt.fetch()).done(function(t) {
+        console.log(dt.toJSON()[0].entries);
+        el.html(Mustache.render(t,{device: model.toJSON().attributes,
+        types: dt.toJSON()[0].entries}));
+        });
+      }
+    });
+
   var NodeEdit = Backbone.View.extend({
     template: "/templates/node-edit.html",
    
@@ -192,9 +248,11 @@ $(document).ready(function() {
 
     render: function() {
       var el=$("#node");
+      loading(el);
       var model=this.model;
       $.get(this.template, function(t) {
         el.html(Mustache.render(t,model.toJSON().attributes));
+
         });
       }
    });
@@ -207,6 +265,7 @@ $(document).ready(function() {
 
     render: function() {
       var el=$("#statistics");
+      loading(el);
       var model=this.model;
       $.get(this.template, function(t) {
         el.html(Mustache.render(t,model.toJSON().attributes));
@@ -264,6 +323,7 @@ $(document).ready(function() {
 
     render: function() {
       var el=this.$el;
+      loading(el);
       var m=this.model;
       $.get(this.template, function(t) {
         nodes=m.toJSON();
@@ -272,14 +332,16 @@ $(document).ready(function() {
         _.each(m.models,function(d) {
           r=$("#"+d.get("pid"));
           $(".edit",r).on("click", function() {
+            $("#nodelist tr").removeClass("success");
+            $("#"+d.get("pid")).addClass("success");
             var v=new NodeEdit({model: d});
             v.render();
             var s=new NodeStats({model: d});
             s.render();
-            $("#nodelist tr").removeClass("success");
-            $("#"+d.get("pid")).addClass("success");
             });
           $(".name",r).on("click", function() {
+            $("#nodelist tr").removeClass("success");
+            $("#"+d.get("pid")).addClass("success");
             var s=new NodeStats({model: d});
             s.render();
             dl=new DeviceList;
@@ -290,8 +352,6 @@ $(document).ready(function() {
               dl.add(node);
               });
             dl.listChange();  
-            $("#nodelist tr").removeClass("success")
-            $("#"+d.get("pid")).addClass("success");
             });
           });
         });
@@ -310,6 +370,7 @@ $(document).ready(function() {
 
     render: function() {
       var el=this.$el;
+      loading(el);
       $.get(this.template, function(t) {
         
         el.html(Mustache.render(t,{}));
@@ -328,6 +389,7 @@ $(document).ready(function() {
 
     render: function() {
       var el=this.$el;
+      loading(el);
       $.get(this.template, function(t) {
         
         el.html(Mustache.render(t,{}));
@@ -345,6 +407,7 @@ $(document).ready(function() {
 
     render: function() {
       var el=this.$el;
+      loading(el);
       $.get(this.template, function(t) {
         
         el.html(Mustache.render(t,{}));

@@ -1,5 +1,5 @@
-				  <h2><a id="Devices">Devices</a></h2>
-				  <table class="table table-bordered table-hover table-condensed">
+				  <h2><span id="Devices">Devices</span></h2>
+				  <table id="devicelist" class="table table-bordered table-hover table-condensed">
 					  <thead>
 						  <tr>
 							  <td>Name</td><td># of Interfaces</td><td>Online?</td><td>Alerts</td><td>Created</td><td>Traffic</td><td>Action</td>
@@ -17,11 +17,11 @@
 							<td>
                 <div class="btn btn-small name"><i class="icon-eye-open
                 icon-white"></i></div>
-								<div class="btn btn-small interfaces"><i class="icon-pencil
+								<div class="btn btn-small edit"><i class="icon-pencil
                 icon-white"></i></div>
 							</td>
 						  </tr>
               {{/devices}}
 					  </tbody>
 				  </table>
-			  </div>
+          <div id="device"></div>

@@ -1,0 +1,39 @@
+			  <div id="node-data">
+				  <h3>Device Daten</h3>
+				<form class="form-horizontal">
+				 	  <div class="control-group">
+						<label class="control-label" for="name">Name</label>
+						<div class="controls span3">
+							<input type="text" id="nodename" placeholder="{{device.name}}" required>
+						</div>
+					  </div>
+					  <!-- deviceType -->
+					  <div class="control-group">
+						  <label class="control-label" for="deviceType">Typ</label>
+						  <div class="controls span3">
+							  <select id="deviceType">
+                  {{#types}}
+                    <option value="{{pid}}">{{attributes.name}}</option>
+                  {{/types}}  
+								</select>
+							</div>
+						</div>
+
+					  <!-- description -->
+				 	  <div class="control-group">
+						<label class="control-label" for="desc">Notizen</label>
+						<div class="controls span3">
+							<textarea rows=3 id="desc" placeholder="{{device.desc}}" />
+						</div>
+					  </div>
+						<!-- Node: here we list all the nodes of the user. -->
+
+					  <div class="control-group">
+						<div class="controls">
+						  <button type="submit" class="btn">Speichern</button>
+						</div>
+					</div>
+				</form>
+
+			  </div>
+
