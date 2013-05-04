@@ -342,7 +342,6 @@ $(document).ready(function() {
   var AppRouter=Backbone.Router.extend({
     routes: {
       "user":       "user", 
-      "node":       "node",
       "overview": "overview", 
       "device":     "device",
       "interface":  "interface",
@@ -368,10 +367,6 @@ $(document).ready(function() {
       },
         
 
-    node: function() {
-      var v=new NodeView();
-      v.render();
-      },
 
     device: function() {
       var v=new DeviceView;
