@@ -1,0 +1,23 @@
+				  <h2><a id="Interfaces">Interfaces</a></h2>
+				  <table class="table table-bordered table-hover table-condensed">
+					  <thead>
+						  <tr>
+							  <td>Name</td><td>IP Adressen</td><td>Typ</td><td>Created</td><td>Action</td>
+						  </tr>
+					  </thead>
+					  <tbody>
+              {{#interfaces}}
+						  <tr id="{{pid}}">
+							<td>{{attributes.name}}</td>
+							<td>{{attributes.ips}}</td>      <!-- in python:    ",".join(all_ips_of_interface) -->
+							<td><span class="badge badge-success">deviceType</span></td>
+							<td>{{attributes.created}}</td>
+							<td>
+								<div class="btn btn-small name"><i class="icon-eye-open icon-white"></i></div>
+								<div class="btn btn-small interfaces"><i class="icon-pencil icon-white"></i></div>
+							</td>
+						  </tr>
+              {{/interfaces}}
+					  </tbody>
+				  </table>
+			  </div>
