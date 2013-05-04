@@ -15,6 +15,16 @@ $(document).ready(function() {
       this.attributesChanged();},
 
     attributesChanged: function() {
+      if (this.get("rat")!=undefined) {
+        var u=base+
+        "PAP-Person_has_Account?verbose&closure&AQ=right.name,EQ,"+
+        this.get("email");
+        $.getJSON(u,function(d) {
+          console.log(d);
+          // TODO IMPLEMENT
+          //user.set("pid",d.attributes.left.pid);
+          });
+        }
       var v=new LoginView({model: this});
       v.render();
       },
@@ -25,6 +35,7 @@ $(document).ready(function() {
         {})
       var auth="https://nodedb2.confine.funkfeuer.at/RAT";
       var t=this;  
+      user.set("email",data.username);
       $.ajax(auth, 
         {type: "POST", 
          data: data,
@@ -50,6 +61,17 @@ $(document).ready(function() {
         }
 
     });
+  var DeviceModel = Backbone.Model.extend({
+    urlRoot: base+"FFM-Device/",
+    idAttribute: "pid",
+    initialize: function() {
+      this.on("change",this.attributesChanged);
+        },
+    
+    attributesChanged: function() {
+        }
+
+    });
 
   var NodeList = Backbone.Collection.extend({
     model: NodeModel,
@@ -60,6 +82,31 @@ $(document).ready(function() {
 
     listChange: function() {
       var v=new OverView({model: this});
+      v.render();
+      }
+    });
+  var DeviceList = Backbone.Collection.extend({
+    model: DeviceModel,
+    urlRoot: base+"FFM-Device",
+
+    //url: function() {
+    //  return "FFM-Device?verbose&AQ=node,EQ,"+this.node.get("pid")
+    //  },
+
+    url: "",
+
+    seturl: function(node) {
+      this.url=base+
+        "FFM-Net_Device?verbose&AQ=node,EQ,"+node.get("pid")
+        },
+        
+
+    initialize: function() {
+      },
+
+    listChange: function() {
+      console.log("change");
+      var v=new DeviceListView({model: this});
       v.render();
       }
     });
@@ -106,6 +153,25 @@ $(document).ready(function() {
         });
       }
    });
+
+  var DeviceListView = Backbone.View.extend({
+    template: "/templates/device-list.html",
+   
+    el: $("#node"),
+
+    initialize: function() {
+      },
+
+    render: function() {
+      var el=$("#node");
+      var m=this.model;
+      $.get(this.template, function(t) {
+        var devices=m.toJSON();
+        devices.shift();
+        el.html(Mustache.render(t,{devices: devices}));
+        });
+      }
+   });
    
   var NodeEdit = Backbone.View.extend({
     template: "/templates/node-edit.html",
@@ -133,41 +199,43 @@ $(document).ready(function() {
       var model=this.model;
       $.get(this.template, function(t) {
         el.html(Mustache.render(t,model.toJSON().attributes));
-		    var map;
-        var lat=model.get("attributes").position.lat;
-        var lon=model.get("attributes").position.lon;
-		    var mapOptions = {
-		      zoom: 13,
-		      center: new google.maps.LatLng(lat, lon),
-		      mapTypeId: google.maps.MapTypeId.ROADMAP
-		    };
-		    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        if (model.get("attributes").position!=undefined) {
+		      var map;
+          var lat=model.get("attributes").position.lat;
+          var lon=model.get("attributes").position.lon;
+		      var mapOptions = {
+		        zoom: 13,
+		        center: new google.maps.LatLng(lat, lon),
+		        mapTypeId: google.maps.MapTypeId.ROADMAP
+		      };
+		      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-		    var latlon = new google.maps.LatLng(lat, lon);
-		    var contentString = '<div id="content">'+
-		      '<div id="siteNotice">'+
-		      '</div>'+
-		      '<h3 id="firstHeading" class="firstHeading">{{name}}</h3>'+
-		      '<div id="bodyContent">'+
-		      '<p><b>{{name}}</b><p/>' +
-		      'It has x devices. Link qualities: .... <p/>'+
-		      '<p><a href="http://en.wikipedia.org/wiki/Wanker">source</a><p/>'+
-		      '</div>'+
-		      '</div>';
+		      var latlon = new google.maps.LatLng(lat, lon);
+		      var contentString = '<div id="content">'+
+		        '<div id="siteNotice">'+
+		        '</div>'+
+		        '<h3 id="firstHeading" class="firstHeading">{{name}}</h3>'+
+		        '<div id="bodyContent">'+
+		        '<p><b>{{name}}</b><p/>' +
+		        'It has x devices. Link qualities: .... <p/>'+
+		        '<p><a href="http://en.wikipedia.org/wiki/Wanker">source</a><p/>'+
+		        '</div>'+
+		        '</div>';
 
-		  var infowindow = new google.maps.InfoWindow({
-			  content: Mustache.render(contentString,model.toJSON().attributes)
-		  });
-
-		  var marker = new google.maps.Marker({
-			  position: latlon,
-			  map: map,
-			  title: model.get("attributes").name
+		    var infowindow = new google.maps.InfoWindow({
+			    content: Mustache.render(contentString,model.toJSON().attributes)
 		    });
 
-		  google.maps.event.addListener(marker, 'click', function() {
-			  infowindow.open(map,marker);
-		  });
+		    var marker = new google.maps.Marker({
+			    position: latlon,
+			    map: map,
+			    title: model.get("attributes").name
+		      });
+
+		    google.maps.event.addListener(marker, 'click', function() {
+			    infowindow.open(map,marker);
+		    });
+        };
 
 
         });
@@ -193,16 +261,29 @@ $(document).ready(function() {
         _.each(m.models,function(d) {
           r=$("#"+d.get("pid"));
           $(".edit",r).on("click", function() {
-            console.log("edit"+d.get("pid"));
             var v=new NodeEdit({model: d});
             v.render();
             var s=new NodeStats({model: d});
             s.render();
+            $("#nodelist tr").removeClass("success");
+            $("#"+d.get("pid")).addClass("success");
             });
           $(".name",r).on("click", function() {
-            console.log("devices"+d.get("pid"));
+            var s=new NodeStats({model: d});
+            s.render();
+            dl=new DeviceList;
+            dl.seturl(d);
+            dl.fetch().success(function(m) {
+              _.each(m.entries, function(n) {
+              var node=new NodeModel(n);
+              dl.add(node);
+              });
+            dl.listChange();  
+            $("#nodelist tr").removeClass("success")
+            $("#"+d.get("pid")).addClass("success");
             });
           });
+        });
         });
       }
    });
@@ -225,66 +306,6 @@ $(document).ready(function() {
       }
    });
 
-   
-  var NodeView = Backbone.View.extend({
-    template: "/templates/node.html",
-   
-    el: $("#app"),
-
-    initialize: function() {
-      },
-
-    render: function() {
-      var el=this.$el;
-      $.get(this.template, function(t) {
-        el.html(Mustache.render(t,{}));
-
-		// google maps
-		var map;
-		var mapOptions = {
-		  zoom: 13,
-		  center: new google.maps.LatLng(48.184864, 16.312241),
-		  mapTypeId: google.maps.MapTypeId.ROADMAP
-		  //mapTypeId: google.maps.MapTypeId.TERRAIN
-		};
-		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-		//console.log(map);
-
-		var latlon = new google.maps.LatLng(48.184864, 16.312241);
-		//var marker = new google.maps.Marker({
-		//	      position: latlon,
-		//	      map: map,
-		//	      title:"nodeName!"
-		//	  });
-		// google.maps.event.addDomListener(window, 'load', initialize);
-		var contentString = '<div id="content">'+
-		  '<div id="siteNotice">'+
-		  '</div>'+
-		  '<h3 id="firstHeading" class="firstHeading">nodeName</h3>'+
-		  '<div id="bodyContent">'+
-		  '<p><b>nodeName</b>, also referred to as blaFasel has been online since: &lt;date&gt;<p/>' +
-		  'It has x devices. Link qualities: .... <p/>'+
-		  '<p><a href="http://en.wikipedia.org/wiki/Wanker">source</a><p/>'+
-		  '</div>'+
-		  '</div>';
-
-		var infowindow = new google.maps.InfoWindow({
-			content: contentString
-		});
-
-		var marker = new google.maps.Marker({
-			position: latlon,
-			map: map,
-			title: 'nodeName!'
-		});
-
-		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.open(map,marker);
-		});
-
-      });
-    }	// end of render: function()
-   });
 
   var DeviceView = Backbone.View.extend({
     template: "/templates/device.html",
