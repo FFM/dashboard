@@ -44,22 +44,27 @@ $(document).ready(function() {
         });
       }
    });
-
-  var StatView = Backbone.View.extend({
    
-    el: $("#statistics"),
+  var NodeEdit = Backbone.View.extend({
+    template: "/templates/node-edit.html",
+   
+    el: $("#node"),
 
     initialize: function() {
       },
 
     render: function() {
-      var el=this.$el;
+      var el=$("#node");
+      var model=this.model;
+      console.log("render");
+      console.log(model);
+      console.log(el);
       $.get(this.template, function(t) {
-        
-        el.html(Mustache.render(t,{}));
+        el.html(Mustache.render(t,model.toJSON().attributes));
         });
       }
    });
+
 
   var OverView = Backbone.View.extend({
     template: "/templates/overview.html",
@@ -80,10 +85,12 @@ $(document).ready(function() {
           r=$("#"+d.get("pid"));
           $(".edit",r).on("click", function() {
             console.log("edit"+d.get("pid"));
-            }
+            v=new NodeEdit({model: d});
+            v.render();
+            });
           $(".name",r).on("click", function() {
             console.log("devices"+d.get("pid"));
-            }
+            });
           });
         });
       }
@@ -107,6 +114,7 @@ $(document).ready(function() {
       }
    });
 
+   
   var NodeView = Backbone.View.extend({
     template: "/templates/node.html",
    
