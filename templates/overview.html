@@ -17,7 +17,7 @@
 	  </div>
 
 	  <hr>
-
+	  <!-- Overview of Nodes -->
 	  <div class="row-fluid">
 		  <div class="span7">
 			  <div id="node-overview">
@@ -30,33 +30,31 @@
 					  </thead>
 					  <tbody>
               {{#nodes}}
-                <tr id="{{pid}}"><td class="name">{{attributes.name}}</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>date</td>
-							  <td><div class="btn btn-small name"><i class="icon-eye-open
-                icon-white"></i></div>
-                <div class="btn btn-small edit">
-                <i class="icon-pencil icon-white"></i></div></td>
+				<tr id="{{pid}}">
+				  <td class="name">{{attributes.name}}</td>
+				  <td>0</td>
+				  <td>0</td>
+                  <td>0</td>
+                  <td>date</td>
+				  <td><div class="btn btn-small name"><i class="icon-eye-open icon-white"></i></div>
+					<div class="btn btn-small edit"> <i class="icon-pencil icon-white"></i></div></td>
+				</tr>
               {{/nodes}}
 					  </tbody>
 				  </table>
-          <div id="node"></div>
-      </div>
-			  <p/>
-			  <h2><a id="Interfaces">Interfaces</a></h2>
-				...
-		  </div>
+			  </div> <!-- end of node overview div -->
+			  <div id="node"></div> <!-- here the node info (editing) will be filled in -->
+		  </div> <!-- end of span7 div -->
+
+		  <!-- ...Graphs, Statistics, Topolgy graphs, ping-plots  for all nodes -->
 		  <div id="statistics" class="span5">
 			<h2>Graphs / Statistiken</h2>
-			  <!-- ...Graphs, Statistics, Topolgy graphs, ping-plots
-			  <p/>
-			-->
 			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_10800.png" /><p/>
 			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_86400.png" /><p/>
 			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_604800.png" /><p/>
-			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_31536000.png" /><p/>
+			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_31536000.png" /><p/> 
 		  </div>
-	  </div>
+		  <p/>
+
+	  </div> <!-- end of row fluid -->
 
