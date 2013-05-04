@@ -45,6 +45,22 @@ $(document).ready(function() {
       }
    });
 
+  var StatView = Backbone.View.extend({
+   
+    el: $("#statistics"),
+
+    initialize: function() {
+      },
+
+    render: function() {
+      var el=this.$el;
+      $.get(this.template, function(t) {
+        
+        el.html(Mustache.render(t,{}));
+        });
+      }
+   });
+
   var OverView = Backbone.View.extend({
     template: "/templates/overview.html",
    
@@ -61,7 +77,13 @@ $(document).ready(function() {
         nodes.shift();
         el.html(Mustache.render(t,{nodes: nodes}));
         _.each(m.models,function(d) {
-          console.log(d.toJSON());
+          r=$("#"+d.get("pid"));
+          $(".edit",r).on("click", function() {
+            console.log("edit"+d.get("pid"));
+            }
+          $(".name",r).on("click", function() {
+            console.log("devices"+d.get("pid"));
+            }
           });
         });
       }

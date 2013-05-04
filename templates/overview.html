@@ -30,13 +30,13 @@
 					  </thead>
 					  <tbody>
               {{#nodes}}
-                <tr><td id="devices-{{pid}}">{{attributes.name}}</td>
+                <tr id="{{pid}}"><td class="name">{{attributes.name}}</td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
                 <td>date</td>
-							  <td><a id="edit-{{pid}}" href="#" class="btn btn-small">
-                <i class="icon-pencil icon-white"></i></a></td>
+							  <td class="edit"><div>class="btn btn-small">
+                <i class="icon-pencil icon-white"></i></div></td>
               {{/nodes}}
 					  </tbody>
 				  </table>
@@ -110,7 +110,7 @@
 			  <h2><a id="Interfaces">Interfaces</a></h2>
 				...
 		  </div>
-		  <div class="span5">
+		  <div id="statistics" class="span5">
 			<h2>Graphs / Statistiken</h2>
 			  <!-- ...Graphs, Statistics, Topolgy graphs, ping-plots
 			  <p/>
