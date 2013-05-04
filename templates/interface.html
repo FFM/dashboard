@@ -19,7 +19,7 @@
 				 	  <div class="control-group">
 						<label class="control-label" for="name">Name</label>
 						<div class="controls span3">
-							<input type="text" id="nodename" placeholder="eth0" required>
+							<input type="text" id="nodename" value="eth0" required>
 						</div>
 					  </div>
 					  <div class="control-group">
@@ -27,7 +27,7 @@
 					  <!-- Mac Address -->
 						<label class="control-label" for="mac">Mac Adresse</label>
 						<div class="controls span3">
-							<input type="text" id="mac" placeholder="01:ca:ff:ee:ba:be" required>
+							<input type="text" id="mac" value="01:ca:ff:ee:ba:be" required>
 						</div>
 					  </div>
 						<!-- Device: here we list all the devices of the node. -->
@@ -57,7 +57,7 @@
 				 	  <div class="control-group">
 						<label class="control-label" for="ip_1">IP Adresse</label>
 						<div class="controls span3 input-append">
-							<input type="text" id="ip_1" placeholder="193.238.156.1" required>
+							<input type="text" id="ip_1" value="193.238.156.1" required>
 							<span class="add-on">/32</span><br/>
 							<!-- <label class="control-label" >Netmask: 255.255.255.255</label><br/> -->
 						</div>
@@ -65,14 +65,14 @@
 				 	  <div class="control-group">
 						<label class="control-label" for="ip_2">Zus&auml;tzliche IP Adresse</label>
 						<div class="controls span3 input-append">
-							<input type="text" id="ip_2" placeholder="193.238.156.2" required>
+							<input type="text" id="ip_2" value="193.238.156.2" required>
 							<span class="add-on">/32</span><br/>
 						</div>
 					  </div>
 				 	  <div class="control-group">
 						<label class="control-label" for="ip_2">Zus&auml;tzliche IP Adresse</label>
 						<div class="controls span3 input-append">
-							<input type="text" id="ip_2" placeholder="193.238.156.3" required>
+							<input type="text" id="ip_2" value="193.238.156.3" required>
 							<span class="add-on">/32</span><br/>
 						</div>
 							<button class="btn btn-info pull-right">+</button>
@@ -98,14 +98,14 @@
 				 	  <div class="control-group">
 						<label class="control-label" for="bssid">BSSID</label>
 						<div class="controls span3">
-							<input type="text" id="bssid" placeholder="26:A4:05:7B:2B:D8" required>
+							<input type="text" id="bssid" value="26:A4:05:7B:2B:D8" required>
 						</div>
 					  </div>
 					  <!-- essid -->
 				 	  <div class="control-group">
 						<label class="control-label" for="essid">ESSID</label>
 						<div class="controls span3">
-							<input type="text" id="essid" placeholder="v11.freiesnetz.www.funkfeuer.at" required>
+							<input type="text" id="essid" value="v11.freiesnetz.www.funkfeuer.at" required>
 						</div>
 					  </div>
 					  <!-- XXX FIXME here we need to add the wireless / wired parameters: the view depends on the interfaceType -->
@@ -134,21 +134,21 @@
 				 	  <div class="control-group">
 						<label class="control-label" for="freq">Kanal</label>
 						<div class="controls span3">
-							<input type="text" id="freq" placeholder="11" required>
+							<input type="text" id="freq" value="11" required>
 						</div>
 					  </div>
 					  <!-- Txpower -->
 				 	  <div class="control-group">
 						<label class="control-label" for="txpower">Sendeleistung (dBm)</label>
 						<div class="controls span3 input-append">
-							<input type="text" id="txpower" placeholder="20" required>
+							<input type="text" id="txpower" value="20" required>
 						</div>
 					  </div>
 					  <!-- Loss -->
 				 	  <div class="control-group">
 						<label class="control-label" for="loss">Summierte Verluste (Kabeld&auml;mpfung, Stecker etc. (dBi))</label>
 						<div class="controls span3 input-append">
-							<input type="text" id="loss" placeholder="4" required>
+							<input type="text" id="loss" value="4" required>
 						</div>
 					  </div>
 
@@ -182,7 +182,7 @@
 				 	  <div class="control-group">
 						<label class="control-label" for="antennaGain">Antennengewinn</label>
 						<div class="controls span3 input-append">
-							<input type="text" id="antennaGain" placeholder="14" required> 
+							<input type="text" id="antennaGain" value="14" required> 
 							<span class="add-on">dBi</span><br/>
 						</div>
 					  </div>
@@ -191,7 +191,7 @@
 				 	  <div class="control-group">
 						<label class="control-label" for="heightAboveGround">H&ouml;he &uuml;ber Grund</label>
 						<div class="controls span3 input-append">
-							<input type="text" id="heightAboveGround" placeholder="14" required> 
+							<input type="text" id="heightAboveGround" value="14" required> 
 							<span class="add-on">m</span><br/>
 						</div>
 					  </div>
@@ -200,7 +200,7 @@
 				 	  <div class="control-group">
 						<label class="control-label" for="azimuth">Azimuth (horizontaler Winkel)</label>
 						<div class="controls span3 input-append">
-							<input type="text" id="azimuth" placeholder="20" required> 
+							<input type="text" id="azimuth" value="20" required> 
 							<span class="add-on">&deg;</span><br/>
 						</div>
 					  </div>
@@ -209,7 +209,7 @@
 				 	  <div class="control-group">
 						<label class="control-label" for="inclination">Inklination (vertikaler Winkel)</label>
 						<div class="controls span3 input-append">
-							<input type="text" id="inclination" placeholder="-0.004" required> 
+							<input type="text" id="inclination" value="-0.004" required> 
 							<span class="add-on">&deg;</span><br/>
 						</div>
 					  </div>
