@@ -8,8 +8,8 @@ $(document).ready(function() {
 
     initialize: function() {
       this.on("change",this.attributesChanged);
-      cookies=_.reduce(_.map(document.cookie.split(";"),function(x) {
-        return x.split("=") }),function(x,y) {x[y[0].substr(1)]=y[1]; 
+      cookies=_.reduce(_.map(document.cookie.split("; "),function(x) {
+        return x.split("=") }),function(x,y) {x[y[0]]=y[1]; 
         return x},{})
 	  console.log(cookies);
       this.set("rat",cookies.RAT);
@@ -21,7 +21,6 @@ $(document).ready(function() {
         "PAP-Person_has_Account?verbose&closure&AQ=right.name,EQ,"+
         this.get("email");
         $.getJSON(u,function(d) {
-          console.log(d);
           // TODO IMPLEMENT
           user.set("pid",d.entries[0].attributes.left.pid);
           });
@@ -106,7 +105,6 @@ $(document).ready(function() {
       },
 
     listChange: function() {
-      console.log("change");
       var v=new DeviceListView({model: this});
       v.render();
       }
@@ -387,7 +385,6 @@ $(document).ready(function() {
       },
 
     start: function() {
-      console.log("start");
       var v=new StartView;
       v.render();
      },
