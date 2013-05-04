@@ -1,7 +1,44 @@
+var user;
+
 $(document).ready(function() {
 
   var base="https://nodedb2.confine.funkfeuer.at/api/";
-  
+ 
+  var UserModel = Backbone.Model.extend({
+
+    initialize: function() {
+      this.on("change",this.attributesChanged);
+      cookies=_.reduce(_.map(document.cookie.split(";"),function(x) {
+        return x.split("=") }),function(x,y) {x[y[0].substr(1)]=y[1]; 
+        return x},{})
+      this.set("rat",cookies.RAT);
+      this.attributesChanged();},
+
+    attributesChanged: function() {
+      var v=new LoginView({model: this});
+      v.render();
+      },
+
+    login: function() {
+      d=$("#loginform").serializeArray()
+      data=_.reduce(d,function(x,y) {x[y.name]=y.value; return x},
+        {})
+      var auth="https://nodedb2.confine.funkfeuer.at/RAT";
+      var t=this;  
+      $.ajax(auth, 
+        {type: "POST", 
+         data: data,
+         success: function(d) {
+          user.set("rat",d.RAT);
+          document.cookie="RAT="+d.RAT;
+          }}); },
+
+    logout: function() {
+      user.set("rat",undefined);
+      document.cookie="RAT=;expires: -1";
+      }
+    })
+
   var NodeModel = Backbone.Model.extend({
     urlRoot: base+"FFM-Node/",
     idAttribute: "pid",
@@ -19,12 +56,37 @@ $(document).ready(function() {
     urlRoot: base+"FFM-Node",
     url: base+"FFM-Node?AQ=owner,EQ,106&verbose",
     initialize: function() {
-      this.on("add",this.listChange);
       },
 
     listChange: function() {
       var v=new OverView({model: this});
       v.render();
+      }
+    });
+
+  var LoginView= Backbone.View.extend ({
+    login: "<form id='loginform'>"+
+      "<input type='email' name='username' placeholder='Email' />"+
+      "<input type='password' name='password' placeholder='Passwort' />"+
+      "<div class='btn btn-small'>Login</a>"+
+      "</form>",
+    
+    logout: "<div class='btn btn-small'>Logout</div>",
+
+    el: $("#login"),
+
+    initialize: function () {},
+
+    render: function() {
+      el= $("#login");
+      if (this.model.get("rat")!=undefined) {
+        el.html(this.logout);
+        $("div.btn",this.$el).on("click",this.model.logout);
+        }
+      else {  
+        el.html(this.login);
+        $("div.btn",this.$el).on("click", this.model.login);
+        }
       }
     });
 
@@ -282,6 +344,7 @@ $(document).ready(function() {
           var node=new NodeModel(n);
           nl.add(node);
         })
+      nl.listChange();  
       })
       },
         
@@ -307,7 +370,8 @@ $(document).ready(function() {
       v.render();
      },
   });
-
+  
+  user=new UserModel;
   var app_router=new AppRouter;
   Backbone.history.start();
 });
