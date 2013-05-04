@@ -11,6 +11,7 @@ $(document).ready(function() {
       cookies=_.reduce(_.map(document.cookie.split("; "),function(x) {
         return x.split("=") }),function(x,y) {x[y[0]]=y[1]; 
         return x},{})
+	  console.log(cookies);
       this.set("rat",cookies.RAT);
       this.attributesChanged();},
 
@@ -21,7 +22,7 @@ $(document).ready(function() {
         this.get("email");
         $.getJSON(u,function(d) {
           // TODO IMPLEMENT
-          //user.set("pid",d.attributes.left.pid);
+          user.set("pid",d.entries[0].attributes.left.pid);
           });
         }
       var v=new LoginView({model: this});
