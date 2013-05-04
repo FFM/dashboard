@@ -3,7 +3,7 @@ var user;
 $(document).ready(function() {
   
   function loading(el) {
-    el.html("<i class='icon-spinner icon-2x'></i> Loading ...");
+    el.html("<i class='icon-spinner icon-spin icon-2x'></i> Loading ...");
     }
   var base="https://nodedb2.confine.funkfeuer.at/api/";
  
