@@ -6,13 +6,16 @@ $(document).ready(function() {
  
   var UserModel = Backbone.Model.extend({
 
+	urlRoot : base+"PAP-Person/",
+	idAttribute: "pid",
+
     initialize: function() {
       this.on("change",this.attributesChanged);
       cookies=_.reduce(_.map(document.cookie.split("; "),function(x) {
         return x.split("=") }),function(x,y) {x[y[0]]=y[1]; 
         return x},{})
-	  console.log(cookies);
       this.set("rat",cookies.RAT);
+	  this.set("email",cookies.email);
       this.attributesChanged();},
 
     attributesChanged: function() {
@@ -22,11 +25,19 @@ $(document).ready(function() {
         this.get("email");
         $.getJSON(u,function(d) {
           // TODO IMPLEMENT
-          user.set("pid",d.entries[0].attributes.left.pid);
+		  if (d.entries[0] != undefined) {
+			var u=d.entries[0].attributes.left;
+			user.set("pid",u.pid);
+			user.fetch();
+		  };
           });
         }
+
       var v=new LoginView({model: this});
       v.render();
+	  if (this.get("attributes") != undefined) {
+		$(".firstname").html(this.get("attributes").first_name)
+	  }
       },
 
     login: function() {
@@ -36,6 +47,7 @@ $(document).ready(function() {
       var auth="https://nodedb2.confine.funkfeuer.at/RAT";
       var t=this;  
       user.set("email",data.username);
+	  document.cookie="email="+user.get("email");
       $.ajax(auth, 
         {type: "POST", 
          data: data,
@@ -256,7 +268,7 @@ $(document).ready(function() {
       $.get(this.template, function(t) {
         nodes=m.toJSON();
         nodes.shift();
-        el.html(Mustache.render(t,{nodes: nodes}));
+        el.html(Mustache.render(t,{nodes: nodes,user: user}));
         _.each(m.models,function(d) {
           r=$("#"+d.get("pid"));
           $(".edit",r).on("click", function() {
