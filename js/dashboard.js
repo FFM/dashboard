@@ -88,6 +88,12 @@ $(document).ready(function() {
 
     });
 
+  var InterfaceModel = Backbone.Model.extend({
+    urlRoot: base+"FFM-Net_Interface/",
+    idAttribute: "pid"
+
+    });
+
   var DeviceType = Backbone.Model.extend({
     urlRoot: base+"FFM-Net_Device_Type/",
     idAttribute: "pid"
@@ -115,10 +121,6 @@ $(document).ready(function() {
     model: DeviceModel,
     urlRoot: base+"FFM-Device",
 
-    //url: function() {
-    //  return "FFM-Device?verbose&AQ=node,EQ,"+this.node.get("pid")
-    //  },
-
     url: "",
 
     seturl: function(node) {
@@ -132,6 +134,22 @@ $(document).ready(function() {
 
     listChange: function() {
       var v=new DeviceListView({model: this});
+      v.render();
+      }
+    });
+
+  var InterfaceList = Backbone.Collection.extend({
+    model: InterfaceModel,
+
+    url: "",
+
+    seturl: function(device) {
+      this.url=base+
+        "FFM-Net_Interface?verbose&AQ=left,EQ,"+device.get("pid");
+        },
+
+    listChange: function() {
+      var v=new InterfaceListView({model: this});
       v.render();
       }
     });
@@ -210,12 +228,38 @@ $(document).ready(function() {
           $(".name",r).on("click", function() {
             $("#devicelist tr").removeClass("success");
             $("#"+d.get("pid")).addClass("success");
+            var il=new InterfaceList;
+            il.seturl(d);
+            il.fetch().done(function(d) {
+              _.each(d.entries, function(n) {
+                var iface=new InterfaceModel(n);
+                il.add(iface);
+                });
+                il.listChange();
+              });
             });
           });
         });
       }
    });
   
+  var InterfaceListView= Backbone.View.extend ({
+    template: "/templates/interface-list.html",
+
+    render: function() {
+      var el=$("#device");
+      loading(el);
+      var t=$.get(this.template);
+      var m=this.model;
+
+      $.when(t).done(function(t) {
+        var interfaces=m.toJSON();
+        interfaces.shift();
+        el.html(Mustache.render(t,{interfaces: interfaces}));
+        });
+      }
+    });
+
   var DeviceEdit = Backbone.View.extend({
 
     template: "/templates/device-edit.html",
