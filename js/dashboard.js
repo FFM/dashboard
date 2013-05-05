@@ -7,7 +7,16 @@ $(document).ready(function() {
     }
   var base="https://nodedb2.confine.funkfeuer.at/api/";
  
+  $.ajaxSetup({error: function(x,s,e) {
+    tmpl="<div class='alert alert-error'>"+
+      "<button type='button' class='close' data-dismiss='alert'>&times;</button>"+
+      "<strong>Error:</strong> {{error}}"+
+      "</div>";
+    $("#messages").append(Mustache.render(tmpl,{error: e}));
+    }});
+
   var UserModel = Backbone.Model.extend({
+  
 
 	urlRoot : base+"PAP-Person/",
 	idAttribute: "pid",
@@ -224,10 +233,14 @@ $(document).ready(function() {
             $("#"+d.get("pid")).addClass("success");
             var v=new DeviceEdit({model: d});
             v.render();
+            var s=new DeviceStats;
+            s.render();
             });
           $(".name",r).on("click", function() {
             $("#devicelist tr").removeClass("success");
             $("#"+d.get("pid")).addClass("success");
+            var s=new DeviceStats;
+            s.render();
             var il=new InterfaceList;
             il.seturl(d);
             il.fetch().done(function(d) {
@@ -256,6 +269,20 @@ $(document).ready(function() {
         var interfaces=m.toJSON();
         interfaces.shift();
         el.html(Mustache.render(t,{interfaces: interfaces}));
+        });
+      }
+    });
+  
+  var DeviceStats = Backbone.View.extend({
+    template: "/templates/device-statistics",
+
+    render: function() {
+      var el=$("#statistics");
+      loading(el);
+      var t=$.get(this.template);
+
+      $.when(t).done(function(t) {
+        el.html(Mustache.render(t,{}))
         });
       }
     });
