@@ -1,5 +1,5 @@
 var user;
-var nm,gm;
+var gm;
 $(document).ready(function() {
   
   function loading(el) {
@@ -84,10 +84,18 @@ $(document).ready(function() {
 
     initialize: function() {
       this.on("change",this.attributesChanged);
+      this.dosave=this.save;
+      this.save=function() {
+        old=this.urlParams;
+        this.urlParams="?raw&brief";
+        this.dosave();
+        this.urlParams=old;
+        }
       },
     attributesChanged: function() {}
 
     })
+  gm=GenericModel;
 
   var DeviceTypeList = Backbone.Collection.extend({
     url: base+ "/FFM-Net_Device_Type?verbose&closure",
@@ -115,7 +123,7 @@ $(document).ready(function() {
 
     seturl: function(node) {
       this.url=base+
-        "FFM-Net_Device?verbose&AQ=node,EQ,"+node.get("pid")
+        "FFM-Net_Device?verbose&raw&brief&ckd&AQ=node,EQ,"+node.get("pid")
         },
         
 
@@ -278,15 +286,22 @@ $(document).ready(function() {
       var el=$("#device");
       loading(el);
       var model=this.model;
-
       var template=$.get(this.template).pipe(function(resp) { return resp;
       });
 
       var dt=new DeviceTypeList;
       
       $.when(template,dt.fetch()).done(function(t) {
+        console.log(model.toJSON().attributes_raw);
         el.html(Mustache.render(t,{device: model.toJSON().attributes_raw,
         types: dt.toJSON()[0].entries}));
+        $("#savedevice").on("click",function() {
+          model.attributes.attributes_raw.name=$("#devicename").val();
+          model.attributes.attributes_raw.left=parseInt($("#deviceType").val());
+          model.attributes.attributes_raw.desc=$("#desc").val();
+          console.log(model);
+          model.save();
+          });
         });
       }
     });
@@ -301,12 +316,36 @@ $(document).ready(function() {
       var el=$("#node");
       loading(el);
       var model=this.model;
-      $.get(this.template, function(t) {
-        el.html(Mustache.render(t,model.toJSON().attributes_raw));
+      
+      var template=$.get(this.template).pipe(function(resp) { return resp;
+      });
+      var
+      users=$.get("https://nodedb2.confine.funkfeuer.at/api/PAP-Person/?verbose&brief").pipe(function(resp) { return resp; });
 
-        });
-      }
-   });
+      $.when(template,users).done(function(t,users) {
+        userlist=_.map(users.entries,function(e) { 
+                  if (e.pid == model.attributes.attributes_raw.owner) {
+                    owner=true}
+                  else {owner=false};
+                  if (e.pid == model.attributes.attributes_raw.manager) {
+                    manager=true}
+                  else {manager=false};
+                  return {"pid":e.pid, 
+                                    "name": e.attributes.first_name+" "+e.attributes.last_name,
+                                    };});
+                                    
+        el.html(Mustache.render(t,{node: model.toJSON().attributes_raw,
+          users: userlist}));
+        $("#savenode").on("click",function() {
+          model.attributes.attributes_raw.name=$("#nodename").val();
+          model.attributes.attributes_raw.position.lat=$("#lat").val();
+          model.attributes.attributes_raw.position.lon=$("#lon").val();
+          model.save();
+          }); });
+          }
+       });
+          
+
 
   var NodeStats = Backbone.View.extend({
     template: "/templates/node-statistics.html",
@@ -346,7 +385,6 @@ $(document).ready(function() {
 		    var infowindow = new google.maps.InfoWindow({
 			    content: Mustache.render(contentString,model.toJSON().attributes)
 		    });
-
 		    var marker = new google.maps.Marker({
 			    position: latlon,
 			    map: map,

@@ -1,25 +1,52 @@
 			  <div id="node-data">
 				  <h3>Node Daten</h3>
-				<form class="form-horizontal">
+				<form class="form-horizontal" id="nodeform">
 					<div class="control-group">
 						<label class="control-label" for="name">Node name</label>
 						<div class="controls span3">
-							<input type="text" id="nodename" value="{{name}}" required>
+							<input type="text" id="nodename" value="{{node.name}}" required>
 						</div>
 					  </div>
 						<!-- Position -->
 					  <div class="control-group">
 						  <label class="control-label" for="lat">Latitude</label>
 						  <div class="controls span3">
-						    <input type="text" id="lat" value="{{position.lat}}">
+						    <input type="text" id="lat" value="{{node.position.lat}}">
 					  	  </div>
 					  </div>
 					  <div class="control-group">
 						  <label class="control-label" for="lon">Longitude</label>
 						  <div class="controls span3">
-						    <input type="text" id="lon" value="{{position.lon}}">
+						    <input type="text" id="lon" value="{{node.position.lon}}">
 					  	  </div>
 					  </div>
+            <div class="control-group">
+            <label class="control-label" for="owner">Owner</label>
+            <div class="controls span3">
+            <select id="owner">
+              {{#users}}
+                <option value="{{pid}}" {{#owner}}selected{{/owner}}>{{name}}</options>
+              {{/users}}
+            </select>
+            </div>
+            </div>
+            <div class="control-group">
+            <label class="control-label" for="manager">Manager</label>
+            <div class="controls span3">
+            <select id="manager">
+              {{#users}}
+                <option value="{{pid}}" {{#manager}}selected{{/manager}}>{{name}}</options>
+              {{/users}}
+            </select>
+            </div>
+            </div>
+            <div class="control-group">
+            <div class="controls span3">
+            <div class="btn btn-primary" id="savenode">Speichern</div>
+            </div>
+            </div>
+            </form>
+            <form class="form-horizontal">
 						<!-- address -->
 					  <div class="control-group">
 						<label class="control-label" for="address">Adresse</label>
