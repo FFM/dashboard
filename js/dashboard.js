@@ -1,5 +1,5 @@
 var user;
-
+var nm,gm;
 $(document).ready(function() {
   
   function loading(el) {
@@ -7,7 +7,16 @@ $(document).ready(function() {
     }
   var base="https://nodedb2.confine.funkfeuer.at/api/";
  
+  $.ajaxSetup({error: function(x,s,e) {
+    tmpl="<div class='alert alert-error'>"+
+      "<button type='button' class='close' data-dismiss='alert'>&times;</button>"+
+      "<strong>Error:</strong> {{error}}"+
+      "</div>";
+    $("#messages").append(Mustache.render(tmpl,{error: e}));
+    }});
+
   var UserModel = Backbone.Model.extend({
+  
 
 	urlRoot : base+"PAP-Person/",
 	idAttribute: "pid",
@@ -64,50 +73,31 @@ $(document).ready(function() {
       document.cookie="RAT=;expires: -1";
       }
     })
-
-  var NodeModel = Backbone.Model.extend({
-    urlRoot: base+"FFM-Node/",
+  
+  var GenericModel = Backbone.Model.extend({
+    urlRoot: base+"pid/",
     idAttribute: "pid",
+    urlParams: "?raw&brief&ckd",
+    url: function(d) {
+      return this.urlRoot+this.attributes[this.idAttribute]+this.urlParams;
+      },
+
     initialize: function() {
       this.on("change",this.attributesChanged);
-        },
-    
-    attributesChanged: function() {
-        }
+      },
+    attributesChanged: function() {}
 
-    });
-  var DeviceModel = Backbone.Model.extend({
-    urlRoot: base+"FFM-Device/",
-    idAttribute: "pid",
-    initialize: function() {
-      this.on("change",this.attributesChanged);
-        },
-    
-    attributesChanged: function() {
-        }
-
-    });
-
-  var InterfaceModel = Backbone.Model.extend({
-    urlRoot: base+"FFM-Net_Interface/",
-    idAttribute: "pid"
-
-    });
-
-  var DeviceType = Backbone.Model.extend({
-    urlRoot: base+"FFM-Net_Device_Type/",
-    idAttribute: "pid"
-    });
+    })
 
   var DeviceTypeList = Backbone.Collection.extend({
     url: base+ "/FFM-Net_Device_Type?verbose&closure",
-    model: DeviceType
+    model: GenericModel
     });
 
   var NodeList = Backbone.Collection.extend({
-    model: NodeModel,
+    model: GenericModel,
     urlRoot: base+"FFM-Node",
-    url: base+"FFM-Node?AQ=owner,EQ,106&verbose",
+    url: base+"FFM-Node?AQ=owner,EQ,103&verbose&brief&raw&ckd",
     initialize: function() {
       },
 
@@ -118,7 +108,7 @@ $(document).ready(function() {
     });
 
   var DeviceList = Backbone.Collection.extend({
-    model: DeviceModel,
+    model: GenericModel,
     urlRoot: base+"FFM-Device",
 
     url: "",
@@ -139,7 +129,7 @@ $(document).ready(function() {
     });
 
   var InterfaceList = Backbone.Collection.extend({
-    model: InterfaceModel,
+    model: GenericModel,
 
     url: "",
 
@@ -224,15 +214,19 @@ $(document).ready(function() {
             $("#"+d.get("pid")).addClass("success");
             var v=new DeviceEdit({model: d});
             v.render();
+            var s=new DeviceStats;
+            s.render();
             });
           $(".name",r).on("click", function() {
             $("#devicelist tr").removeClass("success");
             $("#"+d.get("pid")).addClass("success");
+            var s=new DeviceStats;
+            s.render();
             var il=new InterfaceList;
             il.seturl(d);
             il.fetch().done(function(d) {
               _.each(d.entries, function(n) {
-                var iface=new InterfaceModel(n);
+                var iface=new GenericModel(n);
                 il.add(iface);
                 });
                 il.listChange();
@@ -259,6 +253,20 @@ $(document).ready(function() {
         });
       }
     });
+  
+  var DeviceStats = Backbone.View.extend({
+    template: "/templates/device-statistics.html",
+
+    render: function() {
+      var el=$("#statistics");
+      loading(el);
+      var t=$.get(this.template);
+
+      $.when(t).done(function(t) {
+        el.html(Mustache.render(t,{}))
+        });
+      }
+    });
 
   var DeviceEdit = Backbone.View.extend({
 
@@ -277,8 +285,7 @@ $(document).ready(function() {
       var dt=new DeviceTypeList;
       
       $.when(template,dt.fetch()).done(function(t) {
-        console.log(dt.toJSON()[0].entries);
-        el.html(Mustache.render(t,{device: model.toJSON().attributes,
+        el.html(Mustache.render(t,{device: model.toJSON().attributes_raw,
         types: dt.toJSON()[0].entries}));
         });
       }
@@ -295,7 +302,7 @@ $(document).ready(function() {
       loading(el);
       var model=this.model;
       $.get(this.template, function(t) {
-        el.html(Mustache.render(t,model.toJSON().attributes));
+        el.html(Mustache.render(t,model.toJSON().attributes_raw));
 
         });
       }
@@ -392,7 +399,7 @@ $(document).ready(function() {
             dl.seturl(d);
             dl.fetch().success(function(m) {
               _.each(m.entries, function(n) {
-              var node=new NodeModel(n);
+              var node=new GenericModel(n);
               dl.add(node);
               });
             dl.listChange();  
@@ -479,7 +486,7 @@ $(document).ready(function() {
       var nl=new NodeList;
       nl.fetch().success(function(m,o,x) {
         _.each(m.entries, function(n) {
-          var node=new NodeModel(n);
+          var node=new GenericModel(n);
           nl.add(node);
         })
       nl.listChange();  
