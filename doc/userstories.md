@@ -61,3 +61,4 @@ skilled or have long experience with building wireless networks.
  Power User | hand over node administration to someone else | | 1
  Power User | verify new users | |
  Power User | Promote users to power users | have friends! | 
+User | change technical contacts for my node | get help from power users | 
