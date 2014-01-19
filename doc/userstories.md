@@ -38,4 +38,26 @@ skilled or have long experience with building wireless networks.
  As a      | I want to                  | So I can                    | Vote
 -----------|----------------------------|-----------------------------|-----
  User      | Sign up                    | participate in the network  | 1
-
+ User      | Create a node              | | 1
+ User      | Create a device            | | 1
+ User      | See who's close to me | connect our nodes | 
+ User      | see how well I can reach others | improve or repair my connection | 
+ User      | see whether my node has problems  | to fix them | 
+ User      | change how I'm notified by the network | |
+ User      | Change node/device information | | 1
+ User      | Delete my node/device | | 
+ User      | see why my internet connection doesn't work | fix it | 
+ User      | get contact info from others nearby | contact them | 
+ User | delete my account | | 
+ User | generate a firmware configuration/image | set up my devices |
+ User | see what IP adresses are assigned to me | administer them | 1
+ User | change the status of my node | show others what I'm doing | 
+ User | adjust privacy settings | decide whether I want others to contact me |
+ User | create a link | tell the nework how I'm connected |
+ User | hand over my node to another user | move out and leave my node to others |
+ Power User | create user accounts | allow others to participate |
+ Power User | see statistics of the network | see where there are problems |
+ Power User | see all nodes I administer | | 1
+ Power User | hand over node administration to someone else | | 1
+ Power User | verify new users | |
+ Power User | Promote users to power users | have friends! | 
