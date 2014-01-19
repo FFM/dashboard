@@ -37,7 +37,8 @@ Contributions are highly welcome. You can contribute on several places.
 
 ### Testing
 
-Take the dashboard for a spin and report [issues and bugs](../../issues).
+Take the dashboard for a spin and report [issues and
+bugs](http://github.com/FFM/dashboard/issues)
 Please also help us think of [User Stories](doc/userstories.md)
 so we can target development better.
 
