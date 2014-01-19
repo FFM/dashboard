@@ -1,11 +1,11 @@
 /*!
- * Bootstrap v2.3.1
+ * Bootstrap v2.3.2
  *
- * Copyright 2012 Twitter, Inc
+ * Copyright 2013 Twitter, Inc
  * Licensed under the Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * Designed and built with all the love in the world @twitter by @mdo and @fat.
+ * Designed and built with all the love in the world by @mdo and @fat.
  */
 
 .clearfix {
@@ -3009,6 +3009,15 @@ table th[class*="span"],
   display: block;
 }
 
+.dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 990;
+}
+
 .pull-right > .dropdown-menu {
   right: 0;
   left: auto;
@@ -3351,19 +3360,17 @@ input[type="button"].btn-block {
 .btn-primary {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  // background-color: #006dcc;
-  background-color: #213142;
-  // *background-color: #0044cc;
-  *background-color: #213142;
-  // background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#213142), to(#112132));
-  background-image: -webkit-linear-gradient(top, #213142, #112132);
-  background-image: -o-linear-gradient(top, #213142, #112132);
-  background-image: linear-gradient(to bottom, #213142, #112132);
+  background-color: #006dcc;
+  *background-color: #0044cc;
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0088cc, #0044cc);
   background-repeat: repeat-x;
-  border-color: #213142 #0044cc #002a80;
+  border-color: #0044cc #0044cc #002a80;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff213142', endColorstr='#ff112132', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 
@@ -3374,13 +3381,13 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #213142;
-  *background-color: #213142;
+  background-color: #0044cc;
+  *background-color: #003bb3;
 }
 
 .btn-primary:active,
 .btn-primary.active {
-  background-color: #112132 \9;
+  background-color: #003399 \9;
 }
 
 .btn-warning {
@@ -4784,13 +4791,12 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .navbar-inner {
-  // background-color: #1b1b1b;
-  background-color: #273142;
-  //background-image: -moz-linear-gradient(top, #222222, #111111);
-  //background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
-  //background-image: -webkit-linear-gradient(top, #222222, #111111);
-  //background-image: -o-linear-gradient(top, #222222, #111111);
-  background-image: linear-gradient(to bottom, #273142, #172132);
+  background-color: #1b1b1b;
+  background-image: -moz-linear-gradient(top, #222222, #111111);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
+  background-image: -webkit-linear-gradient(top, #222222, #111111);
+  background-image: -o-linear-gradient(top, #222222, #111111);
+  background-image: linear-gradient(to bottom, #222222, #111111);
   background-repeat: repeat-x;
   border-color: #252525;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
