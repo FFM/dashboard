@@ -28,6 +28,9 @@ and ready within the network. They take care of the network as a whole and
 want to figure out where things are not working and what can be done to fix
 it.
 
+### tech\_c
+Technical contact for node
+
 ### Administrators
 Administrators are people who are trusted by the community and take care
 for crucial parts of the infrastructure. They are highly technically
