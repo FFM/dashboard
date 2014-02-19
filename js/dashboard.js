@@ -1,11 +1,11 @@
 var user;
 var gm;
+var base="https://ff-nodedb.funkfeuer.at/api/";
 $(document).ready(function() {
   
   function loading(el) {
     el.html("<i class='icon-spinner icon-spin icon-2x'></i> Loading ...");
     }
-  var base="https://nodedb2.confine.funkfeuer.at/api/";
  
   $.ajaxSetup({error: function(x,s,e) {
     tmpl="<div class='alert alert-error'>"+
@@ -56,7 +56,7 @@ $(document).ready(function() {
       d=$("#loginform").serializeArray()
       data=_.reduce(d,function(x,y) {x[y.name]=y.value; return x},
         {})
-      var auth="https://nodedb2.confine.funkfeuer.at/RAT";
+      var auth=base+"../RAT"
       var t=this;  
       user.set("email",data.username);
 	  document.cookie="email="+user.get("email");
