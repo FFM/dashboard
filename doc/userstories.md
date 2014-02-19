@@ -29,7 +29,8 @@ want to figure out where things are not working and what can be done to fix
 it.
 
 ### tech\_c
-Technical contact for node
+Technical contact for are people with great technical knowledge who help
+other people to configure/maintain their nodes. 
 
 ### Administrators
 Administrators are people who are trusted by the community and take care
@@ -60,8 +61,8 @@ skilled or have long experience with building wireless networks.
  User | hand over my node to another user | move out and leave my node to others |
  Power User | create user accounts | allow others to participate |
  Power User | see statistics of the network | see where there are problems |
- Power User | see all nodes I administer | | 1
- Power User | hand over node administration to someone else | | 1
+ Tech C | see all nodes I administer | | 1
+ Tech C | hand over node administration to someone else | | 1
  Power User | verify new users | |
  Power User | Promote users to power users | have friends! | 
-User | change technical contacts for my node | get help from power users | 
+User | change technical contacts for my node | get help from others | 
