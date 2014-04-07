@@ -1,28 +1,38 @@
-				  <h2><span id="Devices">Devices</span></h2>
-				  <table id="devicelist" class="table table-bordered table-hover table-condensed">
-					  <thead>
-						  <tr>
-								<td>Name</td><td># of Interfaces</td><td>Device Typ</td><td>Online?</td><td>Alerts</td><td>Created</td><td>Traffic</td><td>Action</td>
-						  </tr>
-					  </thead>
-					  <tbody>
-              {{#devices}}
-						  <tr id="{{pid}}">
-							<td>{{attributes.name}}</td>
-							<td>2</td>
-							<td>{{attributes.deviceType}}</td>
-							<td><span class="badge badge-success">2</span></td>
-							<td>0</td>
-							<td>2008/01/01</td>
-							<td><img src="https://stats.funkfeuer.at/graphs/freenet/micro-traffic-193.238.156.4.png" /></td>
-							<td>
-                <div class="btn btn-small name"><i class="icon-eye-open
-                icon-white"></i></div>
-								<div class="btn btn-small edit"><i class="icon-pencil
-                icon-white"></i></div>
-							</td>
-						  </tr>
-              {{/devices}}
-					  </tbody>
-				  </table>
-          <div id="device"></div>
+<h2><span id="Devices">Devices</span></h2>
+
+<table id="devicelist" class="table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td># of Interfaces</td>
+      <td>Device Typ</td>
+      <td>Online?</td>
+      <td>Alerts</td>
+      <td>Created</td>
+      <td>Traffic</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#devices}}
+      <tr id="{{pid}}">
+        <td>{{attributes.name}}</td>
+        <td>2</td>
+        <td>{{attributes.deviceType}}</td>
+        <td><span class="badge badge-success">2</span></td>
+        <td>0</td>
+        <td>2008/01/01</td>
+        <td>
+          <img src="https://stats.funkfeuer.at/graphs/freenet/micro-traffic-193.238.156.4.png"
+          />
+        </td>
+        <td>
+          <div class="btn btn-small name"><i class="icon-eye-open icon-white"></i></div>
+          <div class="btn btn-small edit"><i class="icon-pencil icon-white"></i></div>
+        </td>
+      </tr>
+    {{/devices}}
+  </tbody>
+</table>
+
+<div id="device"></div>

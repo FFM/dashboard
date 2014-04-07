@@ -1,166 +1,173 @@
-	  <div class="row-fluid">
-		  <div class="span12">
-			  <h1>Willkommen <i>x</i>!</h1>
-			  <small class="pull-right"> User erzeugt am: {{created}}</small> <br/>
-			  <small class="pull-right"> Letzte &Auml;nderung am: 1/1/1970</small> <br/>
-			  <small>Du hast <i>n</i> neue Nachrichten: </small>
-			  <p/>
-			  <div class="alert alert-block alert-error fade in">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4 class="alert-heading">Achtung!</h4>
-					<p>Bei deinen Stammdaten fehlen uns einige Informationen!</p>
-			  </div>
-			  <div class="alert alert-success">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-				    Ok, settings &uuml;bernommen Beispiels-text
-			  </div>
-		  </div>
-	  </div>
+<div class="row-fluid">
+  <div class="span12">
+    <h1>Willkommen <i>x</i>!</h1>
+    <p>
+    <small class="pull-right"> User erzeugt am: {{created}}</small> <br/>
+    <small class="pull-right"> Letzte &Auml;nderung am: 1/1/1970</small> <br/>
+    <small>Du hast <i>n</i> neue Nachrichten: </small>
+    </p>
+    <div class="alert alert-block alert-error fade in">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4 class="alert-heading">Achtung!</h4>
+      <p>Bei deinen Stammdaten fehlen uns einige Informationen!</p>
+    </div>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Ok, settings &uuml;bernommen Beispiels-text
+    </div>
+  </div>
+</div>
 
-	  <hr>
+<hr>
 
-	  <div class="row-fluid">
-		  <div class="span6">
-			  <div id="node-overview">
-				<h2>Stammdaten</h2>
-			  </div>
-			  <div id="stammdaten-formular">
-				<form action="https://eddie.funkfeuer.at/api/1/PAP" method="POST" class="form-horizontal">
-				  <fieldset class="control-group">
-				<!-- Email -->
-					<div class="control-group">
-						<label class="control-label" for="inputEmail">Email</label>
-						<div class="controls span6">
-						  <input type="email" id="inputEmail" placeholder="Email" required>
-						</div>
-							<a href="http://gravatar.com/">
-							<img id="avatar" class="avatar span1" src="http://www.gravatar.com/avatar/4532bfe85bf353d4ef118650383c4b24.png?s=64"><!-- XXX FIXME: generate the gravatar URL dynamically -->
-							</a>
-					  </div>
-					  <div class="control-group">
-						<label class="control-label" for="fname">Vorname</label>
-						<div class="controls span3">
-						  <input type="text" id="fname" placeholder="Vorname" required>
-						</div>
-					  </div>
-					  <div class="control-group">
-						<label class="control-label" for="lname">Nachname</label>
-						<div class="controls span3">
-						  <input type="text" id="lname" placeholder="Nachname" required>
-						</div>
-					  </div>
-						<!-- Tel -->
-					  <div class="control-group">
-						<label class="control-label" for="tel">Telefon</label>
-						<div class="controls span3">
-						  <input type="tel" id="tel" placeholder="Tel">
-						</div>
-					  </div>
-						<!-- Mobile -->
-					  <div class="control-group">
-						<label class="control-label" for="mobile">Mobil</label>
-						<div class="controls span3">
-						  <input type="tel" id="mobile" placeholder="Mobil" required>
-						</div>
-					  </div>
-						<!-- Twitter -->
-					  <div class="control-group">
-						<label class="control-label" for="twitter"><i class="icon-twitter"></i></label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="twitter" placeholder="Twitter" />
-						</div>
-					  </div>
-						<!-- Jabber -->
-					  <div class="control-group">
-						<label class="control-label" for="jabber">Jabber/XMPP</label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="jabber" placeholder="Jabber/XMPP" />
-						</div>
-					  </div>
-						<!-- address -->
-					  <div class="control-group">
-						<label class="control-label" for="address">Adresse</label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="address" placeholder="Strasse + Hausnummer" required />
-						</div>
-					  </div>
-						<!-- zip -->
-					  <div class="control-group">
-						<label class="control-label" for="zip">PLZ</label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="zip" placeholder="PLZ" required />
-						</div>
-					  </div>
-						<!-- city -->
-					  <div class="control-group">
-						<label class="control-label" for="city">Ort</label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="city" placeholder="Ort" required />
-						</div>
-					  </div>
-						<!-- country -->
-					  <div class="control-group">
-						<label class="control-label" for="country">Land</label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="country" placeholder="Land" />
-						</div>
-					  </div>
-				  </fieldset>
-			  </div>
-			  <p/>
-		  </div>
-		  <div class="span6">
-			<h2>Kommunikations-Pr&auml;ferenzen</h2>
-				<small>Hier kannst du festlegen, wann du &uuml;ber welchen Weg erreicht werden willst</small></p>
-					<label class="control-label">Warnungen: </label>
-					<label class="checkbox inline">
-					  <input type="checkbox" id="AlertMeVia" value="twitter" checked><i class="icon-twitter"></i>
-					</label>
-					<label class="checkbox inline">
-					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="jabber">Jabber/XMPP
-					</label>
-					<label class="checkbox inline">
-					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="email" checked>Email
-					</label>
-					<label class="checkbox inline">
-					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="SMS" checked>SMS
-					</label>
-					</p>
-					<label class="control-label">Normale Messages/&Auml;nderungen: </label>
-					<label class="checkbox inline">
-					  <input type="checkbox" id="AlertMeVia" value="twitter" ><i class="icon-twitter"></i>
-					</label>
-					<label class="checkbox inline">
-					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="jabber">Jabber/XMPP
-					</label>
-					<label class="checkbox inline">
-					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="email" checked>Email
-					</label>
-					<label class="checkbox inline">
-					  <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="SMS">SMS
-					</label>
-				
-				<hr>
-			<h2>Mentoring</h2>
-			<small>Du bist derzeit Mentor f&uuml;r die folgenden Personen</small>:</p>
-				<select multiple="multiple">
-					<option selected>Akku</option>
-					<option selected>Eddie</option>
-					<option selected>Franz</option>
-					<option>Kunz</option>
-				</select>
-					  <div class="control-group">
-						<div class="controls">
-						  <button type="submit" class="btn">Speichern</button>
-						</div>
-					</div>
-				</form>
+<div class="row-fluid">
+  <form action="https://eddie.funkfeuer.at/api/1/PAP" method="POST" class="form-horizontal">
+    <div class="span6">
+      <div id="node-overview">
+        <h2>Stammdaten</h2>
+      </div>
+      <div id="stammdaten-formular">
+        <fieldset class="control-group">
+          <!-- Email -->
+          <div class="control-group">
+            <label class="control-label" for="inputEmail">Email</label>
+            <div class="controls span6">
+              <input type="email" id="inputEmail" placeholder="Email" required>
+            </div>
+            <a href="http://gravatar.com/">
+              <img id="avatar" class="avatar span1" src="http://www.gravatar.com/avatar/4532bfe85bf353d4ef118650383c4b24.png?s=64">
+              <!-- XXX FIXME: generate the gravatar URL dynamically -->
+            </a>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="fname">Vorname</label>
+            <div class="controls span3">
+              <input type="text" id="fname" placeholder="Vorname" required>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="lname">Nachname</label>
+            <div class="controls span3">
+              <input type="text" id="lname" placeholder="Nachname" required>
+            </div>
+          </div>
+          <!-- Tel -->
+          <div class="control-group">
+            <label class="control-label" for="tel">Telefon</label>
+            <div class="controls span3">
+              <input type="tel" id="tel" placeholder="Tel">
+            </div>
+          </div>
+          <!-- Mobile -->
+          <div class="control-group">
+            <label class="control-label" for="mobile">Mobil</label>
+            <div class="controls span3">
+              <input type="tel" id="mobile" placeholder="Mobil" required>
+            </div>
+          </div>
+          <!-- Twitter -->
+          <div class="control-group">
+            <label class="control-label" for="twitter"><i class="icon-twitter"></i></label>
+            <div class="controls input-prepended span3">
+              <input type="text" id="twitter" placeholder="Twitter" />
+            </div>
+          </div>
+          <!-- Jabber -->
+          <div class="control-group">
+            <label class="control-label" for="jabber">Jabber/XMPP</label>
+            <div class="controls input-prepended span3">
+              <input type="text" id="jabber" placeholder="Jabber/XMPP" />
+            </div>
+          </div>
+          <!-- address -->
+          <div class="control-group">
+            <label class="control-label" for="address">Adresse</label>
+            <div class="controls input-prepended span3">
+              <input type="text" id="address" placeholder="Strasse + Hausnummer" required />
+            </div>
+          </div>
+          <!-- zip -->
+          <div class="control-group">
+            <label class="control-label" for="zip">PLZ</label>
+            <div class="controls input-prepended span3">
+              <input type="text" id="zip" placeholder="PLZ" required />
+            </div>
+          </div>
+          <!-- city -->
+          <div class="control-group">
+            <label class="control-label" for="city">Ort</label>
+            <div class="controls input-prepended span3">
+              <input type="text" id="city" placeholder="Ort" required />
+            </div>
+          </div>
+          <!-- country -->
+          <div class="control-group">
+            <label class="control-label" for="country">Land</label>
+            <div class="controls input-prepended span3">
+              <input type="text" id="country" placeholder="Land" />
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="span6">
+      <h2>Kommunikations-Pr&auml;ferenzen</h2>
+      <p>
+        <small>
+          Hier kannst du festlegen, wann du &uuml;ber welchen Weg erreicht werden
+          willst
+        </small>
+      </p>
+      <label class="control-label">Warnungen: </label>
+      <label class="checkbox inline">
+        <input type="checkbox" id="AlertMeVia" value="twitter" checked><i class="icon-twitter"></i>
+      </label>
+      <label class="checkbox inline">
+        <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="jabber">Jabber/XMPP
+      </label>
+      <label class="checkbox inline">
+        <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="email" checked>Email
+      </label>
+      <label class="checkbox inline">
+        <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="SMS" checked>SMS
+      </label>
+      <label class="control-label">Normale Messages/&Auml;nderungen: </label>
+      <label class="checkbox inline">
+        <input type="checkbox" id="AlertMeVia" value="twitter" ><i class="icon-twitter"></i>
+      </label>
+      <label class="checkbox inline">
+        <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="jabber">Jabber/XMPP
+      </label>
+      <label class="checkbox inline">
+        <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="email" checked>Email
+      </label>
+      <label class="checkbox inline">
+        <input type="checkbox" name="AlertMevia" id="AlertMeVia" value="SMS">SMS
+      </label>
 
-		  </div>
-		  <div class="span6">
-			<h2>Statistiken</h2>
-			  ...Graphs, Statistics, wie viele Knoten hat der user? <br>
-			Wie viele sind online? Aktiv seit...?
-		  </div>
-	  </div>
-
+      <hr>
+      <h2>Mentoring</h2>
+      <p>
+        <small>
+          Du bist derzeit Mentor f&uuml;r die folgenden Personen:
+        </small>
+      </p>
+      <select multiple="multiple">
+        <option selected>Akku</option>
+        <option selected>Eddie</option>
+        <option selected>Franz</option>
+        <option>Kunz</option>
+      </select>
+      <div class="control-group">
+        <div class="controls">
+          <button type="submit" class="btn">Speichern</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="span6">
+    <h2>Statistiken</h2>
+    ...Graphs, Statistics, wie viele Knoten hat der user? <br>
+    Wie viele sind online? Aktiv seit...?
+  </div>
+</div>

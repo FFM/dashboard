@@ -1,60 +1,66 @@
-	  <div class="row-fluid">
-		  <div class="span12">
-			  <span id="Overview" ></span>
-			  <h1>Willkommen <i class="firstname"></i>!</h1>
-			  <small>Du hast <i>n</i> neue Nachrichten:</small>
-			  <p/>
-			  <div class="alert alert-block alert-error fade in">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4 class="alert-heading">Warning!</h4>
-					<p>Es gibt derzeit <a href="#XXX">2 Fehler</a> bei deinen Knoten!</p>
-			  </div>
-			  <div class="alert alert-success">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-				    Ok, settings &uuml;bernommen Beispiels-text
-			  </div>
-		  </div>
-	  </div>
+<div class="row-fluid">
+  <div class="span12">
+    <span id="Overview" ></span>
+    <h1>Willkommen <i class="firstname"></i>!</h1>
+    <p>
+      <small>Du hast <i>n</i> neue Nachrichten:</small>
+    </p>
+    <div class="alert alert-block alert-error fade in">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4 class="alert-heading">Warning!</h4>
+      <p>Es gibt derzeit <a href="#XXX">2 Fehler</a> bei deinen Knoten!</p>
+    </div>
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Ok, settings &uuml;bernommen Beispiels-text
+    </div>
+  </div>
+</div>
 
-	  <hr>
-	  <!-- Overview of Nodes -->
-	  <div class="row-fluid">
-		  <div class="span7">
-			  <div id="node-overview">
-				  <h2><span id="Nodes">Nodes</span></h2>
-				  <table id="nodelist" class="table table-bordered table-hover table-condensed">
-					  <thead>
-						  <tr>
-							  <td>Name</td><td># Devices</td><td>Online?</td><td>Alerts</td><td>Created</td><td>Action</td>
-						  </tr>
-					  </thead>
-					  <tbody>
-              {{#nodes}}
-				<tr id="{{pid}}">
-				  <td class="name">{{attributes_raw.name}}</td>
-				  <td>0</td>
-				  <td>0</td>
-                  <td>0</td>
-                  <td>date</td>
-				  <td><div class="btn btn-small name"><i class="icon-eye-open icon-white"></i></div>
-					<div class="btn btn-small edit"> <i class="icon-pencil icon-white"></i></div></td>
-				</tr>
-              {{/nodes}}
-					  </tbody>
-				  </table>
-			  </div> <!-- end of node overview div -->
-			  <div id="node"></div> <!-- here the node info (editing) will be filled in -->
-		  </div> <!-- end of span7 div -->
+<hr>
 
-		  <!-- ...Graphs, Statistics, Topolgy graphs, ping-plots  for all nodes -->
-		  <div id="statistics" class="span5">
-			<h2>Graphs / Statistiken</h2>
-			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_10800.png" /><p/>
-			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_86400.png" /><p/>
-			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_604800.png" /><p/>
-			  <img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_31536000.png" /><p/> 
-		  </div>
-		  <p/>
+<!-- Overview of Nodes -->
+<div class="row-fluid">
+  <div class="span7">
+    <div id="node-overview">
+      <h2><span id="Nodes">Nodes</span></h2>
+      <table id="nodelist" class="table table-bordered table-hover table-condensed">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td># Devices</td>
+            <td>Online?</td>
+            <td>Alerts</td>
+            <td>Created</td><td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          {{#nodes}}
+            <tr id="{{pid}}">
+              <td class="name">{{attributes_raw.name}}</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>date</td>
+              <td>
+                <div class="btn btn-small name"><i class="icon-eye-open icon-white"></i></div>
+                <div class="btn btn-small edit"> <i class="icon-pencil icon-white"></i></div>
+              </td>
+            </tr>
+          {{/nodes}}
+        </tbody>
+      </table>
+    </div> <!-- end of node overview div -->
 
-	  </div> <!-- end of row fluid -->
+    <div id="node"></div> <!-- here the node info (editing) will be filled in -->
+  </div> <!-- end of span7 div -->
 
+  <!-- ...Graphs, Statistics, Topolgy graphs, ping-plots  for all nodes -->
+  <div id="statistics" class="span5">
+    <h2>Graphs / Statistiken</h2>
+    <p><img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_10800.png" /></p>
+    <p><img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_86400.png" /></p>
+    <p><img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_604800.png" /></p>
+    <p><img src="https://marvin.funkfeuer.at/smokeping/freenet/rei6/nanom5wan_last_31536000.png" /></p>
+  </div>
+</div> <!-- end of row fluid -->

@@ -1,85 +1,86 @@
-			  <div id="node-data">
-				  <h3>Node Daten</h3>
-				<form class="form-horizontal" id="nodeform">
-					<div class="control-group">
-						<label class="control-label" for="name">Node name</label>
-						<div class="controls span3">
-							<input type="text" id="nodename" value="{{node.name}}" required>
-						</div>
-					  </div>
-						<!-- Position -->
-					  <div class="control-group">
-						  <label class="control-label" for="lat">Latitude</label>
-						  <div class="controls span3">
-						    <input type="text" id="lat" value="{{node.position.lat}}">
-					  	  </div>
-					  </div>
-					  <div class="control-group">
-						  <label class="control-label" for="lon">Longitude</label>
-						  <div class="controls span3">
-						    <input type="text" id="lon" value="{{node.position.lon}}">
-					  	  </div>
-					  </div>
-            <div class="control-group">
-            <label class="control-label" for="owner">Owner</label>
-            <div class="controls span3">
-            <select id="owner">
-              {{#users}}
-                <option value="{{pid}}" {{#owner}}selected{{/owner}}>{{name}}</options>
-              {{/users}}
-            </select>
-            </div>
-            </div>
-            <div class="control-group">
-            <label class="control-label" for="manager">Manager</label>
-            <div class="controls span3">
-            <select id="manager">
-              {{#users}}
-                <option value="{{pid}}" {{#manager}}selected{{/manager}}>{{name}}</options>
-              {{/users}}
-            </select>
-            </div>
-            </div>
-            <div class="control-group">
-            <div class="controls span3">
-            <div class="btn btn-primary" id="savenode">Speichern</div>
-            </div>
-            </div>
-            </form>
-            <form class="form-horizontal">
-						<!-- address -->
-					  <div class="control-group">
-						<label class="control-label" for="address">Adresse</label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="address" placeholder="Strasse + Hausnummer" required />
-						</div>
-					  </div>
-						<!-- zip -->
-					  <div class="control-group">
-						<label class="control-label" for="zip">PLZ</label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="zip" placeholder="PLZ" required />
-						</div>
-					  </div>
-						<!-- city -->
-					  <div class="control-group">
-						<label class="control-label" for="city">Ort</label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="city" placeholder="Ort" required />
-						</div>
-					  </div>
-						<!-- country -->
-					  <div class="control-group">
-						<label class="control-label" for="country">Land</label>
-						<div class="controls input-prepended span3">
-						  <input type="text" id="country" placeholder="Land" />
-						</div>
-					  </div>
+<div id="node-data">
+  <h3>Node Daten</h3>
 
-					  <hr>
+  <form class="form-horizontal" id="nodeform">
+    <div class="control-group">
+      <label class="control-label" for="name">Node name</label>
+      <div class="controls span3">
+        <input type="text" id="nodename" value="{{node.name}}" required>
+      </div>
+    </div>
+    <!-- Position -->
+    <div class="control-group">
+      <label class="control-label" for="lat">Latitude</label>
+      <div class="controls span3">
+        <input type="text" id="lat" value="{{node.position.lat}}">
+      </div>
+    </div>
 
-				</form>
+    <div class="control-group">
+      <label class="control-label" for="lon">Longitude</label>
+      <div class="controls span3">
+        <input type="text" id="lon" value="{{node.position.lon}}">
+      </div>
+    </div>
 
-			  </div>
-			  <p/>
-		  </div>
+    <div class="control-group">
+      <label class="control-label" for="owner">Owner</label>
+      <div class="controls span3">
+        <select id="owner">
+          {{#users}}
+          <option value="{{pid}}" {{#owner}}selected{{/owner}}>{{name}}</option>
+          {{/users}}
+        </select>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label" for="manager">Manager</label>
+      <div class="controls span3">
+        <select id="manager">
+          {{#users}}
+          <option value="{{pid}}" {{#manager}}selected{{/manager}}>{{name}}</option>
+          {{/users}}
+        </select>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls span3">
+        <div class="btn btn-primary" id="savenode">Speichern</div>
+      </div>
+    </div>
+  </form>
+
+  <form class="form-horizontal">
+    <!-- address -->
+    <div class="control-group">
+      <label class="control-label" for="address">Adresse</label>
+      <div class="controls input-prepended span3">
+        <input type="text" id="address" placeholder="Strasse + Hausnummer" required />
+      </div>
+    </div>
+    <!-- zip -->
+    <div class="control-group">
+      <label class="control-label" for="zip">PLZ</label>
+      <div class="controls input-prepended span3">
+        <input type="text" id="zip" placeholder="PLZ" required />
+      </div>
+    </div>
+    <!-- city -->
+    <div class="control-group">
+      <label class="control-label" for="city">Ort</label>
+      <div class="controls input-prepended span3">
+        <input type="text" id="city" placeholder="Ort" required />
+      </div>
+    </div>
+    <!-- country -->
+    <div class="control-group">
+      <label class="control-label" for="country">Land</label>
+      <div class="controls input-prepended span3">
+        <input type="text" id="country" placeholder="Land" />
+      </div>
+    </div>
+    <hr>
+  </form>
+</div>
