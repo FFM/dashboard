@@ -49,7 +49,7 @@ skilled or have long experience with building wireless networks.
  User      | see whether my node has problems  | to fix them | 
  User      | change how I'm notified by the network | |
  User      | Change node/device information | | 1
- User      | Delete my node/device | | 
+ User      | Delete my node/device | | 1
  User      | see why my internet connection doesn't work | fix it | 
  User      | get contact info from others nearby | contact them | 
  User | delete my account | | 
